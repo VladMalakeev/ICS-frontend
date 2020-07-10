@@ -10,21 +10,26 @@ import {NotFound} from "../commonComponents/404";
 import {Header} from "../commonComponents/header/Header";
 import {BulletinBoard} from "./bulletinBoard/BulletinBoardComponent";
 import './App.css'
+import {Body} from '../commonComponents/commomStyles';
+import {StudentManagement} from "./students/management/StudentNewsComponent";
 
 function App() {
   return (
       <BrowserRouter>
           <Header/>
+          <Body>
             <Switch>
                 <Route exact path='/' component={MainPage}/>
                 <Route exact path='/students' component={StudentNews}/>
                 <Route exact path='/graduates' component={GraduatesNews}/>
                 <Route exact path='/applicants' component={ApplicantsNewsComponent}/>
                 <Route exact path='/lecturers' component={Lecturers}/>
-                <Route exact path='/lecturers' component={Departments}/>
+                <Route exact path='/departments' component={Departments}/>
                 <Route exact path='/bulletin-board' component={BulletinBoard}/>
+                <Route exact path='/students/management' component={StudentManagement}/>
                 <Route component={NotFound}/>
             </Switch>
+          </Body>
       </BrowserRouter>
   );
 }

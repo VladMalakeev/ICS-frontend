@@ -6,9 +6,10 @@ export const HeaderWrap = styled.div`
   height: 80px;
   background: linear-gradient(216.51deg, #08238C 26.5%, #1266BB 95.77%);
   display: flex;
+  position: fixed;
+  z-index: 100;
   justify-content: space-between;
   align-items: center;
-  
   @media(max-width: 1000px){
      height: 60px;
   }
