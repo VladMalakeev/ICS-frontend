@@ -1,0 +1,58 @@
+import React from "react";
+import {NewsEntityType} from "../../redux/reducers/newsReducer";
+import {
+    NewsListWrap, SingleNewsButtons,
+    SingleNewsDate, SingleNewsDescription,
+    SingleNewsHeader, SingleNewsImageBackground,
+    SingleNewsImageWrap,
+    SingleNewsTextWrap,
+    SingleNewsWrap
+} from "./newsStyles";
+import moment from 'moment';
+import {Paragraph, SimpleBlueButton} from "../commomStyles";
+import {NewsTxt} from "../../texts/newsTxt";
+import {NavLink} from "react-router-dom";
+
+type NewsComponentProps = {
+    news:Array<NewsEntityType>,
+    path:string
+};
+
+export const NewsComponent: React.FC<NewsComponentProps> = ({news, path}) => {
+    return(
+        <NewsListWrap>
+            {news.map(element => <SingleNews post={element} path={path}/>)}
+        </NewsListWrap>
+    );
+};
+
+type SingleNewsProps = {
+    post:NewsEntityType,
+    path:string
+};
+
+
+const SingleNews: React.FC<SingleNewsProps> = ({post, path}) => {
+    return (
+        <SingleNewsWrap>
+            <SingleNewsImageBackground>
+                <SingleNewsImageWrap image={post.image}>
+                    <SingleNewsDate>{moment(post.dateOfPublication).format('DD.MM.YY')}</SingleNewsDate>
+                </SingleNewsImageWrap>
+            </SingleNewsImageBackground>
+
+            <SingleNewsTextWrap>
+                <div>
+                    <SingleNewsHeader>{post.title}</SingleNewsHeader>
+                    <SingleNewsDescription>{post.description}</SingleNewsDescription>
+                </div>
+                <SingleNewsButtons>
+                    <Paragraph style={{fontWeight:'bold'}}>{post.author}</Paragraph>
+                    <NavLink to={`${path}/${post.id}`}>
+                        <SimpleBlueButton> <span>{NewsTxt.txt4}</span></SimpleBlueButton>
+                    </NavLink>
+                </SingleNewsButtons>
+            </SingleNewsTextWrap>
+        </SingleNewsWrap>
+    )
+};

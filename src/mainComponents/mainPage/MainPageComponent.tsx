@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {
     AbilityItemContent,
-    ItemDescription,
     ItemHeader,
     AbilityItemNumber,
     AbilityItemTextWrap,
@@ -11,9 +10,6 @@ import {
     FirstContentBlock,
     FirstBlock,
     FirstLittleMask,
-    MainH1,
-    MainH2Black,
-    MainH2White,
     ParagraphWhite,
     SecondBlock,
     SecondBlockContent,
@@ -25,20 +21,67 @@ import {
     FourthBlockItemWrap,
     FourthBlockItem,
     FourthBlockContent,
-    ItemDescriptionCentered,
     FifthBlock,
-    MainContentBlock,
-    CarouselBlock, FifthBlockContent, SixthBlock, SixthBlockMask, SixthBlockContent, SeventhBlock, SeventhBlockContent
+    CarouselBlock,
+    FifthBlockContent,
+    SixthBlock,
+    SixthBlockMask,
+    SixthBlockContent, NewsBlock, NewsTitle, NewsWrap, NewsBlockWrap
 } from "./MainPageStyles";
 import {MainPageTexts} from '../../texts/mainPageTxt'
-import {SimpleButton} from "../../commonComponents/commomStyles";
+import {H1, H2Black, H2White, Paragraph, ParagraphCentered, SimpleButton} from "../../commonComponents/commomStyles";
 import {NavLink} from "react-router-dom";
 import idea from '../../svg/idea'
 import cloud from '../../svg/cloud'
 import tool from '../../svg/edit-tool'
 import {Carousel} from "antd";
+import {Footer} from "../../commonComponents/footer/Footer";
+import {NewsPropsType} from "./MainPageContainer";
 
-export const MainPage = () => {
+export const MainPage: React.FC<NewsPropsType> = (props) => {
+    useEffect(() => {
+        props.getApplicantsNews(0,18)
+    },[]);
+
+    const showNewsSlider = (newsList) => {
+        let news = [].concat(newsList);
+        let columns = 0;
+        let rows = 2;
+        let newsInSlide = 0;
+        let totalSlidesCount = 0;
+        let result = [];
+        if(window.innerWidth > 1292){
+            columns = 3;
+            newsInSlide = 6;
+        }else {
+            columns = 2;
+            newsInSlide = 4;
+        }
+        totalSlidesCount = Math.ceil(news.length/newsInSlide);
+        for(let i = 0; i < totalSlidesCount; i++){
+            let tmpArray = news.splice(0, newsInSlide);
+            let slideElements = [];
+            for (let j = 0; j < rows; j++){
+                let tmpArrayForSlide = tmpArray.splice(0, columns);
+                let slideRow = [];
+                for(let k = 0; k < columns; k++){
+                    if(tmpArrayForSlide[k]) {
+                        slideRow.push(
+                            <NewsBlockWrap to={`/applicants/news/${tmpArrayForSlide[k].id}`}>
+                                <NewsBlock image={tmpArrayForSlide[k].image}>
+                                    <NewsTitle>{tmpArrayForSlide[k].title}</NewsTitle>
+                                </NewsBlock>
+                            </NewsBlockWrap>
+                        )
+                    }
+                }
+                slideElements.push(<NewsWrap>{slideRow}</NewsWrap>)
+            }
+            result.push(<CarouselBlock>{slideElements}</CarouselBlock>);
+        }
+        return result;
+    };
+
     return (
         <>
             <FirstBlock>
@@ -47,7 +90,7 @@ export const MainPage = () => {
                 <FirstLittleMask/>
 
                 <FirstContentBlock>
-                    <MainH1>{MainPageTexts.txt1}</MainH1>
+                    <H1>{MainPageTexts.txt1}</H1>
                     <ParagraphWhite style={{marginBottom:'40px'}}>{MainPageTexts.txt2}</ParagraphWhite>
                     <NavLink to='/departments'><SimpleButton>{MainPageTexts.txt3}</SimpleButton></NavLink>
                 </FirstContentBlock>
@@ -57,14 +100,14 @@ export const MainPage = () => {
             <SecondBlock>
 
                 <SecondBlockContent>
-                    <MainH2Black>{MainPageTexts.txt4}</MainH2Black>
+                    <H2Black>{MainPageTexts.txt4}</H2Black>
 
                     <AbilityItemWrap>
                         <AbilityItemContent>
                             <AbilityItemNumber>1</AbilityItemNumber>
                             <AbilityItemTextWrap>
                                 <ItemHeader>{MainPageTexts.txt5}</ItemHeader>
-                                <ItemDescription>{MainPageTexts.txt6}</ItemDescription>
+                                <Paragraph>{MainPageTexts.txt6}</Paragraph>
                             </AbilityItemTextWrap>
                         </AbilityItemContent>
                     </AbilityItemWrap>
@@ -74,7 +117,7 @@ export const MainPage = () => {
                             <AbilityItemNumber>2</AbilityItemNumber>
                             <AbilityItemTextWrap>
                                 <ItemHeader>{MainPageTexts.txt7}</ItemHeader>
-                                <ItemDescription>{MainPageTexts.txt8}</ItemDescription>
+                                <Paragraph>{MainPageTexts.txt8}</Paragraph>
                             </AbilityItemTextWrap>
                         </AbilityItemContent>
                     </AbilityItemWrapReverse>
@@ -85,7 +128,7 @@ export const MainPage = () => {
                             <AbilityItemNumber>3</AbilityItemNumber>
                             <AbilityItemTextWrap>
                                 <ItemHeader>{MainPageTexts.txt9}</ItemHeader>
-                                <ItemDescription>{MainPageTexts.txt10}</ItemDescription>
+                                <Paragraph>{MainPageTexts.txt10}</Paragraph>
                             </AbilityItemTextWrap>
                         </AbilityItemContent>
                     </AbilityItemWrap>
@@ -95,7 +138,7 @@ export const MainPage = () => {
                             <AbilityItemNumber>4</AbilityItemNumber>
                             <AbilityItemTextWrap>
                                 <ItemHeader>{MainPageTexts.txt11}</ItemHeader>
-                                <ItemDescription>{MainPageTexts.txt12}</ItemDescription>
+                                <Paragraph>{MainPageTexts.txt12}</Paragraph>
                             </AbilityItemTextWrap>
                         </AbilityItemContent>
                     </AbilityItemWrapReverse>
@@ -105,7 +148,7 @@ export const MainPage = () => {
                             <AbilityItemNumber>5</AbilityItemNumber>
                             <AbilityItemTextWrap>
                                 <ItemHeader>{MainPageTexts.txt13}</ItemHeader>
-                                <ItemDescription>{MainPageTexts.txt14}</ItemDescription>
+                                <Paragraph>{MainPageTexts.txt14}</Paragraph>
                             </AbilityItemTextWrap>
                         </AbilityItemContent>
                     </AbilityItemWrap>
@@ -120,7 +163,7 @@ export const MainPage = () => {
                 <SecondBigMask/>
 
                 <ThirdBlockContent>
-                    <MainH2White>{MainPageTexts.txt15}</MainH2White>
+                    <H2White>{MainPageTexts.txt15}</H2White>
                     <ParagraphWhite style={{textAlign:'left'}}>{MainPageTexts.txt16}</ParagraphWhite>
                 </ThirdBlockContent>
 
@@ -128,69 +171,53 @@ export const MainPage = () => {
 
             <FourthBlock>
                 <FourthBlockContent>
-                    <MainH2Black>{MainPageTexts.txt17}</MainH2Black>
+                    <H2Black>{MainPageTexts.txt17}</H2Black>
                     <FourthBlockItemWrap>
 
                         <FourthBlockItem>
                             {idea}
                             <ItemHeader>{MainPageTexts.txt18}</ItemHeader>
-                            <ItemDescriptionCentered>{MainPageTexts.txt19}</ItemDescriptionCentered>
+                            <ParagraphCentered>{MainPageTexts.txt19}</ParagraphCentered>
                         </FourthBlockItem>
 
                         <FourthBlockItem>
                             {tool}
                             <ItemHeader>{MainPageTexts.txt20}</ItemHeader>
-                            <ItemDescriptionCentered>{MainPageTexts.txt21}</ItemDescriptionCentered>
+                            <ParagraphCentered>{MainPageTexts.txt21}</ParagraphCentered>
                         </FourthBlockItem>
 
                         <FourthBlockItem>
                             {cloud}
                             <ItemHeader>{MainPageTexts.txt22}</ItemHeader>
-                            <ItemDescriptionCentered>{MainPageTexts.txt23}</ItemDescriptionCentered>
+                            <ParagraphCentered>{MainPageTexts.txt23}</ParagraphCentered>
                         </FourthBlockItem>
 
                     </FourthBlockItemWrap>
                 </FourthBlockContent>
             </FourthBlock>
 
+            {props.news.length > 0 &&
             <FifthBlock>
                 <FifthBlockContent>
-                    <MainH2Black style={{textAlign:'center'}}>{MainPageTexts.txt24}</MainH2Black>
+                    <H2Black style={{textAlign: 'center'}}>{MainPageTexts.txt24}</H2Black>
                     <Carousel>
-                        <CarouselBlock>
-                            <h3>1</h3>
-                        </CarouselBlock>
-
-                        <CarouselBlock>
-                            <h3>2</h3>
-                        </CarouselBlock>
-
-                        <CarouselBlock>
-                            <h3>3</h3>
-                        </CarouselBlock>
-
-                        <CarouselBlock>
-                            <h3>4</h3>
-                        </CarouselBlock>
+                        {showNewsSlider(props.news)}
                     </Carousel>
                 </FifthBlockContent>
             </FifthBlock>
+            }
 
             <SixthBlock>
                 <SixthBlockMask>
                     <SixthBlockContent>
-                        <MainH2White>{MainPageTexts.txt25}</MainH2White>
+                        <H2White>{MainPageTexts.txt25}</H2White>
                         <ParagraphWhite style={{textAlign:'right', marginBottom:'40px'}}>{MainPageTexts.txt26}</ParagraphWhite>
                         <NavLink to='/students/management'><SimpleButton>{MainPageTexts.txt27}</SimpleButton></NavLink>
                     </SixthBlockContent>
                 </SixthBlockMask>
             </SixthBlock>
 
-            <SeventhBlock>
-                <SeventhBlockContent>
-
-                </SeventhBlockContent>
-            </SeventhBlock>
+            <Footer/>
         </>
     );
 };

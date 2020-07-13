@@ -3,7 +3,7 @@ import firstBackground from '../../images/mainFirstBg.png'
 import secondBackground from '../../images/mainSecondBg.png'
 import thirdBackground from '../../images/mainThirdBg.png'
 import sixthBackground from '../../images/mainSixthBg.png'
-import seventhBackground from '../../images/mainSeventhBg.png'
+import emptyNews from '../../images/emptyNews.jpg';
 import {NavLink} from "react-router-dom";
 
 const MainBlock = styled.div`
@@ -57,12 +57,6 @@ export const SixthBlock = styled.div`
   background-size: 70%;
 `;
 
-export const SeventhBlock = styled(MainBlock)`
-  height: 60vh;
-  background: url(${seventhBackground});
-  background-position: center;
-`;
-
 export const SixthBlockMask = styled(MainBlock)`
   width: 100%;
   height: 100%;
@@ -101,28 +95,6 @@ export const SecondBigMask = styled.div`
   position: absolute;
 `;
 
-export const MainH1 = styled.h1`
-  font-family: 'Rubik Mono One';
-  color: white;
-  font-size: 3em;
-`;
-
-export const MainH2 = styled.h2`
-  font-family: 'Rubik Mono One';
-  font-size: 2em;
-`;
-
-export const MainH2White = styled(MainH2)`
-  font-family: 'Rubik Mono One';
-  color: white;
-`;
-
-export const MainH2Black = styled(MainH2)`
-  font-family: 'Rubik Mono One';
-  color: #383838;
-  margin-bottom: 40px;
-`;
-
 const MainParagraph = styled.p`
   font-family: 'Montserrat';
 `;
@@ -139,6 +111,14 @@ export const MainContentBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  @media(max-width: 1890px){
+    width: 70%;
+  }
+  
+  @media(max-width: 1550px){
+    width: 85%;
+  }
 `;
 
 export const FirstContentBlock = styled(MainContentBlock)`
@@ -169,10 +149,6 @@ export const FifthBlockContent = styled(MainContentBlock)`
 export const SixthBlockContent = styled(MainContentBlock)`
   flex-direction: column;
   align-items: flex-end;
-`;
-
-export const SeventhBlockContent = styled(MainContentBlock)`
-  align-items: flex-start;
 `;
 
 export const AbilityItemWrap = styled.div`
@@ -209,25 +185,14 @@ export const AbilityItemTextWrap = styled.div`
   padding: 10px 20px;
 `;
 
-export const ItemHeader = styled.div`
+export const ItemHeader = styled.p`
   font-family: 'Montserrat';
   font-weight: bold;
   color: #062A77;
   font-size: 25px;
   padding: 5px 0;
   font-weight: 800;
-`;
-
-export const ItemDescription = styled.div`
-  font-family: 'Montserrat';
-  color: #383838;
-  font-size: 16px;
-`;
-
-export const ItemDescriptionCentered = styled(ItemDescription)`
-  text-align: center;
-  padding: 10px;
-  font-weight: 600;
+  margin-bottom: 0;
 `;
 
 
@@ -252,6 +217,47 @@ export const CarouselBlock = styled.div`
   background: cornflowerblue;
 `;
 
-export const InformationBlock = styled.div`
+export const NewsWrap = styled.div`
+  display: flex;
+  align-items: flex-start;
+  //justify-content:space-between;
+  width: 100%;
+  height: 50%;
+  padding:20px 20px 10px 20px;
+  :last-child{
+    padding: 10px 20px 20px 20px;
+  }
+`;
 
+export const NewsBlockWrap = styled(NavLink)`
+  background: #F2F2F2;
+  width: 31.3%;
+  height: 80%;
+  margin: 0 1%;
+`;
+
+export const NewsBlock = styled.div<{image:string | null}>`
+  background: url(${(props:any) => props.image?props.image:emptyNews});
+  background-size: ${(props:any) => props.image?'cover':'contain'};
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+`;
+
+export const NewsTitle = styled.div`
+  background: #062A77;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 85%;
+  height: 50px;
+  margin-bottom: -20px;
+  font-size: 14px;
+  padding: 5px;
+  text-align: center;
 `;

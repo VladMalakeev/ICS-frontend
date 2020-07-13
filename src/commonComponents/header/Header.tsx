@@ -37,9 +37,9 @@ export const Header = () => {
         <>
             <HeaderWrap>
                 <HeaderLeftLinks>
-                    <HeaderLink><NavLink to={'/applicants'}>{HeaderTexts.txt1}</NavLink></HeaderLink>
-                    <HeaderLink><NavLink to={'/students'}>{HeaderTexts.txt2}</NavLink></HeaderLink>
-                    <HeaderLink><NavLink to={'/graduates'}>{HeaderTexts.txt3}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/applicants/news'}>{HeaderTexts.txt1}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/students/news'}>{HeaderTexts.txt2}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/graduates/news'}>{HeaderTexts.txt3}</NavLink></HeaderLink>
                 </HeaderLeftLinks>
 
                 <LogoLink to={'/'}> <Logo src={logo}/></LogoLink>
