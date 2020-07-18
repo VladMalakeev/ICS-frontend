@@ -2,16 +2,12 @@ import {AppStateType} from "../../../redux/store";
 import {getNewsById} from "../../../redux/actions/singleNewsAction";
 import {connect} from "react-redux";
 import {SingleGraduatesNews} from "./SingleGraduatesNews";
+import {NewsEntityType} from "../../../redux/reducers/newsReducer";
 
 type MapStateToPropsType = {
-    id: number | null
-    title: string | null
-    description: string | null
-    author: string | null
-    dateOfPublication: string | null,
-    image: string | null,
-    link: string | null,
-    publics: number | null
+    news:NewsEntityType,
+    preloader:boolean,
+    isExist:boolean | null
 }
 
 type MapDispatchToPropsType = {
@@ -26,14 +22,9 @@ export type SingleNewsPropsType = MapDispatchToPropsType & MapStateToPropsType &
 
 let MapStateToProps = (state:AppStateType):MapStateToPropsType => {
     return {
-        id: state.singleNewsReducer.id,
-        title: state.singleNewsReducer.title,
-        description: state.singleNewsReducer.description,
-        author: state.singleNewsReducer.author,
-        dateOfPublication: state.singleNewsReducer.dateOfPublication,
-        image: state.singleNewsReducer.image,
-        link: state.singleNewsReducer.link,
-        publics: state.singleNewsReducer.publics
+        news:state.singleNewsReducer.news,
+        preloader:state.singleNewsReducer.preloader,
+        isExist:state.singleNewsReducer.isExist
     }
 };
 

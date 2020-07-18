@@ -29,12 +29,31 @@ export const SingleNewsWrap = styled.div`
     @media(max-width: 1000px){
       width: 95vw;
     }
+    
+    @media(max-width: 800px){
+       height: 220px;
+    }
+    
+    @media(max-width: 650px){
+       flex-direction: column;
+       height: 450px;
+    }
+    
+    @media(max-width: 450px){
+      height: 500px;
+    }
 `;
 
 export const SingleNewsImageBackground = styled.div`
   width: 35%;
   margin: 0 10px 20px 10px;
   background: #F2F2F2;
+  
+  @media(max-width: 650px){
+      width: 100%;
+      height: 200px;
+      margin: 0;
+  }
 `;
 
 export const SingleNewsImageWrap = styled.div<{image:string | null}>`
@@ -60,14 +79,26 @@ export const SingleNewsDate = styled.div`
   height: 50px;
   font-size: 20px;
   margin-bottom: -20px;
+  
+  @media(max-width: 650px){
+    height: 40px;
+    width: 70%;
+  }
 `;
 
 export const SingleNewsTextWrap = styled.div`
   width: 65%;
-  padding: 0 30px;
+  padding: 0 10px 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
+  @media(max-width: 650px){
+      width: 100%;
+      margin-top: 30px;
+      height: 100%;
+      padding: 0;
+  }
 `;
 
 export const SingleNewsHeader = styled.div`
@@ -77,6 +108,10 @@ export const SingleNewsHeader = styled.div`
   font-size: 20px;
   line-height: 160%;
   color: #062A77;
+  
+  @media(max-width: 800px){
+    font-size: 16px;
+  }
 `;
 
 export const SingleNewsDescription = styled.div`
@@ -88,10 +123,35 @@ export const SingleNewsDescription = styled.div`
   text-align: justify;
   overflow: hidden;
   height: 110px;
+  
+   @media(max-width: 800px){
+    height: 70px;
+  }
+  
+   @media(max-width: 650px){
+    height: 90px;
+  }
 `;
 
 export const SingleNewsButtons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  @media(max-width: 650px){
+    margin-top: 10px;
+  }
+  
+  @media(max-width: 450px){
+    flex-direction: column;
+    p{
+      width: 100%;
+      text-align: left;
+      padding-bottom: 10px;
+    }
+    
+    a{
+      width: 100%;
+    }
+  }
 `;

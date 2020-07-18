@@ -16,6 +16,10 @@ export const SimpleBody = styled.div`
   background-size: cover;
   background-position: center;
   padding: 30px;
+  
+  @media(max-width: 650px){
+    padding: 30px 10px;
+  }
 `;
 
 export const H1 = styled.h1`

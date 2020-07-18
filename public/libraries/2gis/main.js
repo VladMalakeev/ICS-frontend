@@ -11,7 +11,7 @@ DG.then(function() {
     DG.control.location({position: 'bottomright'},
     ).addTo(map);
     myIcon = DG.icon({
-        iconUrl: 'img/logo-ics.png',
+        iconUrl: './libraries/2gis/logo.png',
         iconSize: [30, 33]
     });
     DG.marker([46.45950878001669, 30.752054882083286], {

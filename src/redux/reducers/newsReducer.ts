@@ -20,7 +20,7 @@ export type NewsType = {
 };
 
 let initialState: NewsType = {
-    limit:6,
+    limit:3,
     amountOfNews:0,
     totalAmountOfNews:0,
     news:[],
