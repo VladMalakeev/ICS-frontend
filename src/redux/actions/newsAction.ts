@@ -1,8 +1,12 @@
 import {NewsMock, NewsStudents, NewsGraduates} from '../../mockData/news'
+import {NewsApi} from "../../api/DataAccessLayer";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "../store";
+import {ServerError} from "../../commonComponents/modals/errors";
 
-import {NewsType} from "../reducers/newsReducer";
 
-export const SET_NEWS = "SET_NEWS";
+export const SET_NEWS = "NEWS_REDUCER/SET_NEWS";
+export const CHANGE_NEWS_PRELOADER = "NEWS_REDUCER/CHANGE_NEWS_PRELOADER";
 
 type setNewsActionType = {
     type: typeof SET_NEWS
@@ -12,6 +16,16 @@ type setNewsActionType = {
         news:Array<any>
     }
 }
+
+type changeNewsPreloaderType = {
+    type: typeof CHANGE_NEWS_PRELOADER,
+    payload:{
+        status:boolean
+    }
+}
+
+export type NewsActionsType = setNewsActionType | changeNewsPreloaderType;
+
 //TODO any
 const setNewsAction = (amountOfNews:number,totalAmountOfNews:number, news:any):setNewsActionType => {
     return {
@@ -24,8 +38,31 @@ const setNewsAction = (amountOfNews:number,totalAmountOfNews:number, news:any):s
     };
 };
 
-export const getApplicantsNews = (offset:number, limit:number) => {
-    return (dispatch:any) => {
+const changeNewsPreloader = (status:boolean): changeNewsPreloaderType => {
+    return {
+        type:CHANGE_NEWS_PRELOADER,
+        payload:{
+            status:status
+        }
+    }
+};
+
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, NewsActionsType>
+
+export const getApplicantsNews = (offset:number, limit:number):ThunkType => {
+    return async (dispatch) => {
+        // dispatch(changeNewsPreloader(true));
+        // NewsApi.getApplicantsNews(offset,limit)
+        //     .then(res => {
+        //         dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
+        //     })
+        //     .catch(error => {
+        //         ServerError(error)
+        //     })
+        //     .finally(() => {
+        //         dispatch(changeNewsPreloader(false));
+        //     })
+
         let arr =  [];
         arr = NewsMock.news.concat();
         dispatch(setNewsAction(
@@ -36,8 +73,20 @@ export const getApplicantsNews = (offset:number, limit:number) => {
     }
 };
 
-export const getStudentsNews = (offset:number, limit:number) => {
-    return (dispatch:any) => {
+export const getStudentsNews = (offset:number, limit:number):ThunkType => {
+    return async (dispatch) => {
+        // dispatch(changeNewsPreloader(true));
+        // NewsApi.getStudentsNews(offset,limit)
+        //     .then(res => {
+        //         dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
+        //     })
+        //     .catch(error => {
+        //         ServerError(error)
+        //     })
+        //     .finally(() => {
+        //         dispatch(changeNewsPreloader(false));
+        //     });
+
         let arr =  [];
         arr = NewsStudents.news.concat();
         dispatch(setNewsAction(
@@ -48,8 +97,20 @@ export const getStudentsNews = (offset:number, limit:number) => {
     }
 };
 
-export const getGraduatesNews = (offset:number, limit:number) => {
-    return (dispatch:any) => {
+export const getGraduatesNews = (offset:number, limit:number):ThunkType => {
+    return async (dispatch) => {
+        // dispatch(changeNewsPreloader(true));
+        // NewsApi.getGraduatesNews(offset,limit)
+        //     .then(res => {
+        //         dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
+        //     })
+        //     .catch(error => {
+        //         ServerError(error)
+        //     })
+        //     .finally(() => {
+        //         dispatch(changeNewsPreloader(false));
+        //     });
+
         let arr =  [];
         arr = NewsGraduates.news.concat();
         dispatch(setNewsAction(

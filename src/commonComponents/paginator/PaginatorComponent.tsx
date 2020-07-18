@@ -2,12 +2,12 @@ import React from "react";
 import {Pagination} from "antd";
 
 type PaginatorComponentType = {
-    totalAmountOfNews:number,
+    total:number,
     limit:null,
     getPosts:(offset:number, limit:number) => void
 }
 
-export const PaginatorComponent = (props) => {
+export const PaginatorComponent: React.FC<PaginatorComponentType> = (props) => {
     const itemRender = (current, type, originalElement) => {
         if (type === 'prev') {
             return <a>Назад</a>;

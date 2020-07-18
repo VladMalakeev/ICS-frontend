@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {Lecturers} from "./lecturers/LecturersComponent";
 import {Departments} from "./departments/DepartmentsComponent";
-import {NotFound} from "../commonComponents/404";
+import {NotFound} from "../commonComponents/404/404";
 import {Header} from "../commonComponents/header/Header";
 import {BulletinBoard} from "./bulletinBoard/BulletinBoardComponent";
 import {Map} from "./map/MapComponent"
@@ -16,6 +16,9 @@ import {SingleStudentsNews} from "./students/singleNews/SingleStudentsNews";
 import {MainPageContainer} from "./mainPage/MainPageContainer";
 import {StudentsNewsContainer} from "./students/news/StudentNewsContainer";
 import {GraduatesNewsContainer} from "./graduates/news/GraduatesNewsContainer";
+import {SingleApplicantsNewsContainer} from "./applicants/singleNews/SingleApplicantsNewsContainer";
+import {SingleGraduatesNewsContainer} from "./graduates/singleNews/SingleGraduatesNewsContainer";
+import {SingleStudentsNewsContainer} from "./students/singleNews/SingleStudentsNewsContainer";
 
 function App() {
   return (
@@ -25,11 +28,11 @@ function App() {
             <Switch>
                 <Route exact path='/' component={MainPageContainer}/>
                 <Route exact path='/students/news' component={StudentsNewsContainer}/>
-                <Route path='/students/news/:id' component={SingleStudentsNews}/>
+                <Route path='/students/news/:id' component={SingleStudentsNewsContainer}/>
                 <Route exact path='/graduates/news' component={GraduatesNewsContainer}/>
-                <Route path='/graduates/news/:id' component={SingleGraduatesNews}/>
+                <Route path='/graduates/news/:id' component={SingleGraduatesNewsContainer}/>
                 <Route exact path='/applicants/news' component={ApplicantsNewsContainer}/>
-                <Route path='/applicants/news/:id' component={SingleApplicantsNews}/>
+                <Route path='/applicants/news/:id' component={SingleApplicantsNewsContainer}/>
                 <Route exact path='/lecturers' component={Lecturers}/>
                 <Route exact path='/departments' component={Departments}/>
                 <Route exact path='/bulletin-board' component={BulletinBoard}/>

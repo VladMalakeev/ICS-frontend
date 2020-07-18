@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import emptyNews from '../../images/emptyNews.jpg';
 
+export const NewsBlockWrap = styled.div`
+  min-height: 60vh;
+`;
+
 export const NewsListWrap = styled.div`
   width: 100%;
   display: flex;
@@ -17,6 +21,14 @@ export const SingleNewsWrap = styled.div`
     background: white;
     box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.05);
     margin: 15px;
+    
+    @media(max-width: 1330px){
+      width: 80vw;
+    }
+    
+    @media(max-width: 1000px){
+      width: 95vw;
+    }
 `;
 
 export const SingleNewsImageBackground = styled.div`

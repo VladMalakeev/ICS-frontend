@@ -1,4 +1,4 @@
-import {SET_NEWS} from '../actions/newsAction'
+import {NewsActionsType, SET_NEWS, CHANGE_NEWS_PRELOADER} from '../actions/newsAction'
 
 export type NewsEntityType = {
     id: number | null
@@ -15,22 +15,27 @@ export type NewsType = {
     limit:number
     amountOfNews:number
     totalAmountOfNews:number,
-    news:Array<NewsEntityType>
+    news:Array<NewsEntityType>,
+    preloader:boolean
 };
 
 let initialState: NewsType = {
     limit:6,
     amountOfNews:0,
     totalAmountOfNews:0,
-    news:[]
+    news:[],
+    preloader:false
 };
 
-export const NewsReducer = (state = initialState, action: any):NewsType => {
+export const NewsReducer = (state = initialState, action: NewsActionsType):NewsType => {
     switch (action.type) {
         case SET_NEWS:
             state.news = action.payload.news;
             state.amountOfNews = action.payload.amountOfNews;
             state.totalAmountOfNews = action.payload.totalAmountOfNews;
+            return {...state};
+        case CHANGE_NEWS_PRELOADER:
+            state.preloader = action.payload.status;
             return {...state};
         default:return state;
     }

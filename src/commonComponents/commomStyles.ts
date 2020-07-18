@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import simpleBackground from '../images/simpleBackground.png'
+import {Empty} from "antd";
 
 export const Body = styled.div`
   padding-top: 80px;
@@ -10,7 +11,7 @@ export const Body = styled.div`
 `;
 
 export const SimpleBody = styled.div`
-  min-height: 40vh;
+  min-height: 60vh;
   background: url(${simpleBackground});
   background-size: cover;
   background-position: center;
@@ -21,11 +22,28 @@ export const H1 = styled.h1`
   font-family: 'Rubik Mono One';
   color: white;
   font-size: 3em;
+  
+  @media(max-width: 1180px){
+    font-size: 2em;
+  }
+  
+  @media(max-width: 570px){
+    font-size: 1.5em;
+  }
 `;
 
 export const H2 = styled.h2`
   font-family: 'Rubik Mono One';
   font-size: 2em;
+  
+  @media(max-width: 600px){
+     font-size: 1.5em;
+     margin-bottom: 20px;
+  }
+  
+  @media(max-width: 450px){
+     font-size: 1.2em;
+  }
 `;
 
 export const H2White = styled(H2)`
@@ -162,5 +180,24 @@ export const SimpleBlueButton = styled.div`
         transition: 0.4s all ease;
       }
     }
+  }
+`;
+
+export const EmptyWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+`;
+
+export const EmptyBlock = styled(Empty)`
+    width: 300px;
+    height: 300px;
+  svg{
+    width: 300px;
+    height: 300px;
   }
 `;

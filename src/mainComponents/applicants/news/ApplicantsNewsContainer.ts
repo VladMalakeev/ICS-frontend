@@ -8,11 +8,12 @@ type MapStateToPropsType = {
     amountOfNews:number
     totalAmountOfNews:number,
     news:Array<NewsEntityType>,
-    limit:number
+    limit:number,
+    preloader:boolean
 }
 
 type MapDispatchToPropsType = {
-    getApplicantsNews:(offset:number, limit:number) => void
+    getNews:(offset:number, limit:number) => void
 }
 
 type OwnPropsType = {
@@ -26,13 +27,14 @@ let MapStateToProps = (state:AppStateType):MapStateToPropsType => {
       amountOfNews:state.newsReducer.amountOfNews,
       totalAmountOfNews:state.newsReducer.totalAmountOfNews,
       news:state.newsReducer.news,
-      limit:state.newsReducer.limit
+      limit:state.newsReducer.limit,
+      preloader:state.newsReducer.preloader
   }
 };
 
 let MapDispatchToProps = (dispatch):MapDispatchToPropsType => {
     return {
-        getApplicantsNews:(offset, limit) => {
+        getNews:(offset, limit) => {
             dispatch(getApplicantsNews(offset, limit))
         }
     }

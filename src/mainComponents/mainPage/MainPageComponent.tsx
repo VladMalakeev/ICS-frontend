@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {
     AbilityItemContent,
     ItemHeader,
@@ -26,10 +26,18 @@ import {
     FifthBlockContent,
     SixthBlock,
     SixthBlockMask,
-    SixthBlockContent, NewsBlock, NewsTitle, NewsWrap, NewsBlockWrap
+    SixthBlockContent,
+    NewsBlock,
+    NewsTitle,
+    NewsWrap,
+    NewsBlockWrap,
+    CarouselWrap,
+    CarouselButtonWrap,
+    MainPageTitle,
+    MainPageDescription, IconWrap, MainManagementTitle, MainAvailabilityDescription, MainManagementDescription
 } from "./MainPageStyles";
 import {MainPageTexts} from '../../texts/mainPageTxt'
-import {H1, H2Black, H2White, Paragraph, ParagraphCentered, SimpleButton} from "../../commonComponents/commomStyles";
+import {H2Black, H2White, Paragraph, ParagraphCentered, SimpleButton} from "../../commonComponents/commomStyles";
 import {NavLink} from "react-router-dom";
 import idea from '../../svg/idea'
 import cloud from '../../svg/cloud'
@@ -37,11 +45,18 @@ import tool from '../../svg/edit-tool'
 import {Carousel} from "antd";
 import {Footer} from "../../commonComponents/footer/Footer";
 import {NewsPropsType} from "./MainPageContainer";
+import {LeftOutlined, RightOutlined} from "@ant-design/icons/lib";
 
 export const MainPage: React.FC<NewsPropsType> = (props) => {
+    const [width, setWidth] = useState(window.innerWidth);
+
     useEffect(() => {
-        props.getApplicantsNews(0,18)
+        props.getApplicantsNews(0,18);
+
+        window.addEventListener('resize', () => setWidth(window.innerWidth))
     },[]);
+
+    let slider:any = useRef();
 
     const showNewsSlider = (newsList) => {
         let news = [].concat(newsList);
@@ -50,12 +65,15 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
         let newsInSlide = 0;
         let totalSlidesCount = 0;
         let result = [];
-        if(window.innerWidth > 1292){
+        if(window.innerWidth > 1000){
             columns = 3;
             newsInSlide = 6;
-        }else {
+        }else if(window.innerWidth > 700) {
             columns = 2;
             newsInSlide = 4;
+        }else{
+            columns = 1;
+            newsInSlide = 2;
         }
         totalSlidesCount = Math.ceil(news.length/newsInSlide);
         for(let i = 0; i < totalSlidesCount; i++){
@@ -67,7 +85,7 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                 for(let k = 0; k < columns; k++){
                     if(tmpArrayForSlide[k]) {
                         slideRow.push(
-                            <NewsBlockWrap to={`/applicants/news/${tmpArrayForSlide[k].id}`}>
+                            <NewsBlockWrap className={'revealator-zoomout revealator-once'} to={`/applicants/news/${tmpArrayForSlide[k].id}`}>
                                 <NewsBlock image={tmpArrayForSlide[k].image}>
                                     <NewsTitle>{tmpArrayForSlide[k].title}</NewsTitle>
                                 </NewsBlock>
@@ -90,8 +108,8 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                 <FirstLittleMask/>
 
                 <FirstContentBlock>
-                    <H1>{MainPageTexts.txt1}</H1>
-                    <ParagraphWhite style={{marginBottom:'40px'}}>{MainPageTexts.txt2}</ParagraphWhite>
+                    <MainPageTitle>{MainPageTexts.txt1}</MainPageTitle>
+                    <MainPageDescription>{MainPageTexts.txt2}</MainPageDescription>
                     <NavLink to='/departments'><SimpleButton>{MainPageTexts.txt3}</SimpleButton></NavLink>
                 </FirstContentBlock>
 
@@ -100,9 +118,9 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
             <SecondBlock>
 
                 <SecondBlockContent>
-                    <H2Black>{MainPageTexts.txt4}</H2Black>
+                    <H2Black style={{textAlign:'center'}}>{MainPageTexts.txt4}</H2Black>
 
-                    <AbilityItemWrap>
+                    <AbilityItemWrap className={'revealator-fade revealator-once'}>
                         <AbilityItemContent>
                             <AbilityItemNumber>1</AbilityItemNumber>
                             <AbilityItemTextWrap>
@@ -112,7 +130,7 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                         </AbilityItemContent>
                     </AbilityItemWrap>
 
-                    <AbilityItemWrapReverse>
+                    <AbilityItemWrapReverse className={'revealator-fade revealator-once'}>
                         <AbilityItemContent>
                             <AbilityItemNumber>2</AbilityItemNumber>
                             <AbilityItemTextWrap>
@@ -123,7 +141,7 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                     </AbilityItemWrapReverse>
 
 
-                    <AbilityItemWrap>
+                    <AbilityItemWrap className={'revealator-fade revealator-once'}>
                         <AbilityItemContent>
                             <AbilityItemNumber>3</AbilityItemNumber>
                             <AbilityItemTextWrap>
@@ -133,7 +151,7 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                         </AbilityItemContent>
                     </AbilityItemWrap>
 
-                    <AbilityItemWrapReverse>
+                    <AbilityItemWrapReverse className={'revealator-fade revealator-once'}>
                         <AbilityItemContent>
                             <AbilityItemNumber>4</AbilityItemNumber>
                             <AbilityItemTextWrap>
@@ -143,7 +161,7 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                         </AbilityItemContent>
                     </AbilityItemWrapReverse>
 
-                    <AbilityItemWrap>
+                    <AbilityItemWrap className={'revealator-fade revealator-once'}>
                         <AbilityItemContent>
                             <AbilityItemNumber>5</AbilityItemNumber>
                             <AbilityItemTextWrap>
@@ -162,9 +180,9 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                 <SecondLittleMask/>
                 <SecondBigMask/>
 
-                <ThirdBlockContent>
+                <ThirdBlockContent className={'revealator-slideleft revealator-once'}>
                     <H2White>{MainPageTexts.txt15}</H2White>
-                    <ParagraphWhite style={{textAlign:'left'}}>{MainPageTexts.txt16}</ParagraphWhite>
+                    <MainAvailabilityDescription style={{textAlign:'left'}}>{MainPageTexts.txt16}</MainAvailabilityDescription>
                 </ThirdBlockContent>
 
             </ThirdBlock>
@@ -174,21 +192,27 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
                     <H2Black>{MainPageTexts.txt17}</H2Black>
                     <FourthBlockItemWrap>
 
-                        <FourthBlockItem>
-                            {idea}
-                            <ItemHeader>{MainPageTexts.txt18}</ItemHeader>
+                        <FourthBlockItem className={'revealator-zoomin revealator-once revealator-delay2'}>
+                            <IconWrap>
+                                {idea}
+                                <ItemHeader>{MainPageTexts.txt18}</ItemHeader>
+                            </IconWrap>
                             <ParagraphCentered>{MainPageTexts.txt19}</ParagraphCentered>
                         </FourthBlockItem>
 
-                        <FourthBlockItem>
-                            {tool}
-                            <ItemHeader>{MainPageTexts.txt20}</ItemHeader>
+                        <FourthBlockItem className={'revealator-zoomin revealator-once revealator-delay4'}>
+                            <IconWrap>
+                                {tool}
+                                <ItemHeader>{MainPageTexts.txt20}</ItemHeader>
+                            </IconWrap>
                             <ParagraphCentered>{MainPageTexts.txt21}</ParagraphCentered>
                         </FourthBlockItem>
 
-                        <FourthBlockItem>
-                            {cloud}
-                            <ItemHeader>{MainPageTexts.txt22}</ItemHeader>
+                        <FourthBlockItem className={'revealator-zoomin revealator-once revealator-delay6'}>
+                            <IconWrap>
+                                {cloud}
+                                <ItemHeader>{MainPageTexts.txt22}</ItemHeader>
+                            </IconWrap>
                             <ParagraphCentered>{MainPageTexts.txt23}</ParagraphCentered>
                         </FourthBlockItem>
 
@@ -200,18 +224,28 @@ export const MainPage: React.FC<NewsPropsType> = (props) => {
             <FifthBlock>
                 <FifthBlockContent>
                     <H2Black style={{textAlign: 'center'}}>{MainPageTexts.txt24}</H2Black>
-                    <Carousel>
-                        {showNewsSlider(props.news)}
-                    </Carousel>
+                   <CarouselWrap>
+                       <CarouselButtonWrap onClick={() => {slider.prev()}}>
+                           <LeftOutlined />
+                       </CarouselButtonWrap>
+                       <div style={{width:'90%'}} >
+                        <Carousel dots={false} ref={ref => {slider = ref}}>
+                            {showNewsSlider(props.news)}
+                        </Carousel>
+                       </div>
+                       <CarouselButtonWrap>
+                           <RightOutlined onClick={() => {slider.next()}} />
+                       </CarouselButtonWrap>
+                   </CarouselWrap>
                 </FifthBlockContent>
             </FifthBlock>
             }
 
             <SixthBlock>
                 <SixthBlockMask>
-                    <SixthBlockContent>
-                        <H2White>{MainPageTexts.txt25}</H2White>
-                        <ParagraphWhite style={{textAlign:'right', marginBottom:'40px'}}>{MainPageTexts.txt26}</ParagraphWhite>
+                    <SixthBlockContent className={'revealator-slideright revealator-once'}>
+                        <MainManagementTitle>{MainPageTexts.txt25}</MainManagementTitle>
+                        <MainManagementDescription>{MainPageTexts.txt26}</MainManagementDescription>
                         <NavLink to='/students/management'><SimpleButton>{MainPageTexts.txt27}</SimpleButton></NavLink>
                     </SixthBlockContent>
                 </SixthBlockMask>

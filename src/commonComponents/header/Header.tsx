@@ -69,9 +69,9 @@ export const Header = () => {
                 <DriverSeparator/>
 
                 <DriverLinks>
-                    <HeaderLink onClick={onClose}><NavLink to={'/applicants'}>{HeaderTexts.txt1}</NavLink></HeaderLink>
-                    <HeaderLink onClick={onClose}><NavLink to={'/students'}>{HeaderTexts.txt2}</NavLink></HeaderLink>
-                    <HeaderLink onClick={onClose}><NavLink to={'/graduates'}>{HeaderTexts.txt3}</NavLink></HeaderLink>
+                    <HeaderLink onClick={onClose}><NavLink to={'/applicants/news'}>{HeaderTexts.txt1}</NavLink></HeaderLink>
+                    <HeaderLink onClick={onClose}><NavLink to={'/students/news'}>{HeaderTexts.txt2}</NavLink></HeaderLink>
+                    <HeaderLink onClick={onClose}><NavLink to={'/graduates/news'}>{HeaderTexts.txt3}</NavLink></HeaderLink>
                 </DriverLinks>
 
                 <DriverSeparator/>
