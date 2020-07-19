@@ -12,7 +12,7 @@ type NewsApiType = {
     getStudentsNews: (offset:number, limit:number) => any,
     getGraduatesNews: (offset:number, limit:number) => any,
     getApplicantsNews: (offset:number, limit:number) => any,
-    getNewsById: (id:number, publics:number) => any
+    getNewsById: (id:number, publics:string) => any
 }
 
 type NewsListType = {
@@ -24,7 +24,7 @@ type NewsListType = {
 
 export const NewsApi:NewsApiType = {
     getStudentsNews(offset:number, limit:number){
-        return instance.get<NewsListType>(
+        return instance.get(
             'api/News/getStudentsNews',
             {params:{offset,limit}}).then(res => res.data)
     },
@@ -38,7 +38,7 @@ export const NewsApi:NewsApiType = {
             'api/News/getApplicantsNews',
             {params:{offset,limit}}).then(res => res.data)
     },
-    getNewsById(id:number, publics:number){
+    getNewsById(id:number, publics:string){
         return instance.get<NewsEntityType>(
             `api/News/${id}`,
             {params:{publics}}).then(res => res.data)

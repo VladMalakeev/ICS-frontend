@@ -53,30 +53,30 @@ const newsExist = (status:boolean):newsExistType => {
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, SingleNewsActionType>
 
-export const getNewsById = (id:number, publics:number):ThunkType => {
+export const getNewsById = (id:number, publics:string):ThunkType => {
     return async (dispatch) => {
-        // dispatch(changePreloader(true));
-        // NewsApi.getNewsById(id, publics)
-        //     .then(res => {
-        //         dispatch(setNewsAction(res));
-        //         dispatch(newsExist(true))
-        //     })
-        //     .catch(error => {
-        //         if(error.response){
-        //             if(error.response.status === 404) {
-        //                 dispatch(newsExist(false))
-        //             }
-        //         }else ServerError(error)
-        //     })
-        //     .finally(() => {
-        //         dispatch(changePreloader(false));
-        //     });
+        dispatch(changePreloader(true));
+        NewsApi.getNewsById(id, publics)
+            .then(res => {
+                dispatch(setNewsAction(res));
+                dispatch(newsExist(true))
+            })
+            .catch(error => {
+                if(error.response){
+                    if(error.response.status === 404) {
+                        dispatch(newsExist(false))
+                    }
+                }else ServerError(error)
+            })
+            .finally(() => {
+                dispatch(changePreloader(false));
+            });
 
-        dispatch(newsExist(true));
-        switch (publics) {
-            case 1: dispatch(setNewsAction(NewsMock.news[id-1])); break;
-            case 2: dispatch(setNewsAction(NewsStudents.news[id-1])); break;
-            case 3: dispatch(setNewsAction(NewsGraduates.news[id-1])); break;
-        }
+        // dispatch(newsExist(true));
+        // switch (publics) {
+        //     case 1: dispatch(setNewsAction(NewsMock.news[id-1])); break;
+        //     case 2: dispatch(setNewsAction(NewsStudents.news[id-1])); break;
+        //     case 3: dispatch(setNewsAction(NewsGraduates.news[id-1])); break;
+        // }
     }
 };

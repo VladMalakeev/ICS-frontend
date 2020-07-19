@@ -68,8 +68,8 @@ const SingleNews: React.FC<SingleNewsProps> = ({post, path}) => {
     return (
         <SingleNewsWrap>
             <SingleNewsImageBackground>
-                {/*<SingleNewsImageWrap image={IMAGES+post.image}>*/}
-                <SingleNewsImageWrap image={post.image}>
+                <SingleNewsImageWrap image={IMAGES+post.image}>
+                {/*<SingleNewsImageWrap image={post.image}>*/}
                     <SingleNewsDate>{moment(post.dateOfPublication).format('DD.MM.YY')}</SingleNewsDate>
                 </SingleNewsImageWrap>
             </SingleNewsImageBackground>

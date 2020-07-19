@@ -51,72 +51,73 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, NewsActionsTy
 
 export const getApplicantsNews = (offset:number, limit:number):ThunkType => {
     return async (dispatch) => {
-        // dispatch(changeNewsPreloader(true));
-        // NewsApi.getApplicantsNews(offset,limit)
-        //     .then(res => {
-        //         dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
-        //     })
-        //     .catch(error => {
-        //         ServerError(error)
-        //     })
-        //     .finally(() => {
-        //         dispatch(changeNewsPreloader(false));
-        //     })
+        dispatch(changeNewsPreloader(true));
+        NewsApi.getApplicantsNews(offset,limit)
+            .then(res => {
+                dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
+            })
+            .catch(error => {
+                ServerError(error)
+            })
+            .finally(() => {
+                dispatch(changeNewsPreloader(false));
+            })
 
-        let arr =  [];
-        arr = NewsMock.news.concat();
-        dispatch(setNewsAction(
-            limit,
-            NewsMock.totalAmountOfNews,
-            arr.splice(offset, limit)
-        ))
+        // let arr =  [];
+        // arr = NewsMock.news.concat();
+        // dispatch(setNewsAction(
+        //     limit,
+        //     NewsMock.totalAmountOfNews,
+        //     arr.splice(offset, limit)
+        // ))
     }
 };
 
 export const getStudentsNews = (offset:number, limit:number):ThunkType => {
     return async (dispatch) => {
-        // dispatch(changeNewsPreloader(true));
-        // NewsApi.getStudentsNews(offset,limit)
-        //     .then(res => {
-        //         dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
-        //     })
-        //     .catch(error => {
-        //         ServerError(error)
-        //     })
-        //     .finally(() => {
-        //         dispatch(changeNewsPreloader(false));
-        //     });
+        dispatch(changeNewsPreloader(true));
+        NewsApi.getStudentsNews(offset,limit)
+            .then(res => {
+                dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
+            })
+            .catch(error => {
+                console.log(error)
+                ServerError(error)
+            })
+            .finally(() => {
+                dispatch(changeNewsPreloader(false));
+            });
 
-        let arr =  [];
-        arr = NewsStudents.news.concat();
-        dispatch(setNewsAction(
-            limit,
-            NewsStudents.totalAmountOfNews,
-            arr.splice(offset, limit)
-        ))
+        // let arr =  [];
+        // arr = NewsStudents.news.concat();
+        // dispatch(setNewsAction(
+        //     limit,
+        //     NewsStudents.totalAmountOfNews,
+        //     arr.splice(offset, limit)
+        // ))
     }
 };
 
 export const getGraduatesNews = (offset:number, limit:number):ThunkType => {
     return async (dispatch) => {
-        // dispatch(changeNewsPreloader(true));
-        // NewsApi.getGraduatesNews(offset,limit)
-        //     .then(res => {
-        //         dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
-        //     })
-        //     .catch(error => {
-        //         ServerError(error)
-        //     })
-        //     .finally(() => {
-        //         dispatch(changeNewsPreloader(false));
-        //     });
+        dispatch(changeNewsPreloader(true));
+        NewsApi.getGraduatesNews(offset,limit)
+            .then(res => {
+                dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
+            })
+            .catch(error => {
+                ServerError(error)
+            })
+            .finally(() => {
+                dispatch(changeNewsPreloader(false));
+            });
 
-        let arr =  [];
-        arr = NewsGraduates.news.concat();
-        dispatch(setNewsAction(
-            limit,
-            NewsGraduates.totalAmountOfNews,
-            arr.splice(offset, limit)
-        ))
+        // let arr =  [];
+        // arr = NewsGraduates.news.concat();
+        // dispatch(setNewsAction(
+        //     limit,
+        //     NewsGraduates.totalAmountOfNews,
+        //     arr.splice(offset, limit)
+        // ))
     }
 };

@@ -13,6 +13,7 @@ import {NewsEntityType} from "../../../redux/reducers/newsReducer";
 import {EmptySinglePost} from "../../Empty";
 import {Skeleton} from "antd";
 import {SingleNewsTextWrap} from "../newsStyles";
+import {IMAGES} from "../../../api/DataAccessLayer";
 
 type SingleNewsComponentType = {
     news:NewsEntityType,
@@ -29,7 +30,7 @@ export const SingleNewsComponent:React.FC<SingleNewsComponentType> = (props) => 
             {(props.isExist && !props.preloader) &&
                 <NewsBlock>
                     <NewsImageWrap>
-                        <NewsImage image={props.news.image}/>
+                        <NewsImage image={IMAGES+props.news.image}/>
                     </NewsImageWrap>
                     <NewsTitle>{props.news.title}</NewsTitle>
                     <DescriptionBlock>

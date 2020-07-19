@@ -11,7 +11,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    getNewsById:(id:number, publics:number) => void
+    getNewsById:(id:number, publics:string) => void
 }
 
 type OwnPropsType = {
