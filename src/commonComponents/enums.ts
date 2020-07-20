@@ -1,5 +1,5 @@
 export enum PUBLICS {
-    APPLICANTS = 'Students',
-    STUDENTS = 'Graduates',
-    GRADUATES = 'Applicants'
+    APPLICANTS = 'Applicants',
+    STUDENTS = 'Students',
+    GRADUATES = 'Graduates'
 }

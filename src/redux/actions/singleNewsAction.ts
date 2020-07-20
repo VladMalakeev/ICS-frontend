@@ -4,6 +4,7 @@ import {ServerError} from "../../commonComponents/modals/errors";
 import {NewsEntityType} from "../reducers/newsReducer";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "../store";
+import {PUBLICS} from "../../commonComponents/enums";
 
 export const SET_NEWS = "SINGLE_NEWS_REDUCER/SET_NEWS";
 export const CHANGE_PRELOADER = "SINGLE_NEWS/CHANGE_PRELOADER";
@@ -74,9 +75,9 @@ export const getNewsById = (id:number, publics:string):ThunkType => {
 
         // dispatch(newsExist(true));
         // switch (publics) {
-        //     case 1: dispatch(setNewsAction(NewsMock.news[id-1])); break;
-        //     case 2: dispatch(setNewsAction(NewsStudents.news[id-1])); break;
-        //     case 3: dispatch(setNewsAction(NewsGraduates.news[id-1])); break;
+        //     case PUBLICS.APPLICANTS: dispatch(setNewsAction(NewsMock.news[id-1])); break;
+        //     case PUBLICS.STUDENTS: dispatch(setNewsAction(NewsStudents.news[id-1])); break;
+        //     case PUBLICS.GRADUATES: dispatch(setNewsAction(NewsGraduates.news[id-1])); break;
         // }
     }
 };

@@ -1,8 +1,11 @@
 import axios from 'axios'
 import {NewsEntityType} from "../redux/reducers/newsReducer";
+import {DepartmentsListType} from "../redux/reducers/departmentsReducer";
+import {DepartmentType} from "../redux/reducers/singleDepartmentsReducer";
 
 export const DOMAIN = process.env.REACT_APP_DOMAIN;
-export const IMAGES = DOMAIN+'/api/Images/';
+export const IMAGES = DOMAIN+'api/Images/';
+//export const IMAGES = '';
 
 const instance = axios.create({
     baseURL: DOMAIN,
@@ -46,11 +49,15 @@ export const NewsApi:NewsApiType = {
 };
 
 type DepartmentsApiType = {
-    getDepartments: (offset:number, limit:number) => any,
+    getDepartments: () => any,
     getDepartmentsById: (id:number) => any
 }
 
 export const DepartmentsApi:DepartmentsApiType = {
-    getDepartments(offset:number, limit:number){return instance.get('api/Departments', {params:{offset, limit}})},
-    getDepartmentsById(id){return instance.get(`api/Departments/${id}`)},
+    getDepartments(){
+        return instance.get<Array<DepartmentsListType>>('api/Departments').then(res => res.data)
+    },
+    getDepartmentsById(id){
+        return instance.get<DepartmentType>(`api/Departments/${id}`).then(res => res.data)
+    },
 };

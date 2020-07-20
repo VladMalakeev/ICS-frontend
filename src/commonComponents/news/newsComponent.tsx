@@ -77,7 +77,7 @@ const SingleNews: React.FC<SingleNewsProps> = ({post, path}) => {
             <SingleNewsTextWrap>
                 <div>
                     <SingleNewsHeader>{post.title}</SingleNewsHeader>
-                    <SingleNewsDescription>{post.description}</SingleNewsDescription>
+                    <SingleNewsDescription dangerouslySetInnerHTML={{ __html: post.description }}/>
                 </div>
                 <SingleNewsButtons>
                     <Paragraph style={{fontWeight:'bold'}}>{post.author}</Paragraph>

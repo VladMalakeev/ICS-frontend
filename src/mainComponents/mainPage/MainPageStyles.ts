@@ -6,6 +6,7 @@ import sixthBackground from '../../images/mainSixthBg.png'
 import emptyNews from '../../images/emptyNews.jpg';
 import {NavLink} from "react-router-dom";
 import {H1, H2White} from "../../commonComponents/commomStyles";
+import {IMAGES} from "../../api/DataAccessLayer";
 
 const MainBlock = styled.div`
   display: flex;
@@ -452,7 +453,7 @@ export const NewsBlockWrap = styled(NavLink)`
 `;
 
 export const NewsBlock = styled.div<{image:string | null}>`
-  background: url(${(props:any) => props.image?props.image:emptyNews});
+  background: url(${(props:any) => props.image?IMAGES+props.image:emptyNews});
   background-size: ${(props:any) => props.image?'cover':'contain'};
   background-repeat: no-repeat;
   background-position: center;

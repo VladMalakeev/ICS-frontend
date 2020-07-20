@@ -33,9 +33,7 @@ export const SingleNewsComponent:React.FC<SingleNewsComponentType> = (props) => 
                         <NewsImage image={IMAGES+props.news.image}/>
                     </NewsImageWrap>
                     <NewsTitle>{props.news.title}</NewsTitle>
-                    <DescriptionBlock>
-                        {props.news.description}
-                    </DescriptionBlock>
+                    <DescriptionBlock dangerouslySetInnerHTML={{ __html: props.news.description }}/>
                     <AuthorBlock>
                         <InfoText>Дата публикации: {moment(props.news.dateOfPublication).format('DD.MM.YYYY')}</InfoText>
                         <InfoText>Автор: {props.news.author}</InfoText>

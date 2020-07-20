@@ -81,7 +81,6 @@ export const getStudentsNews = (offset:number, limit:number):ThunkType => {
                 dispatch(setNewsAction(res.amountOfNews, res.totalAmountOfNews, res.news));
             })
             .catch(error => {
-                console.log(error)
                 ServerError(error)
             })
             .finally(() => {
