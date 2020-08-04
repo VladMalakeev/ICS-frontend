@@ -16,6 +16,8 @@ export const SimpleBody = styled.div`
   background-size: cover;
   background-position: center;
   padding: 30px;
+  display: flex;
+  justify-content: center;
   
   @media(max-width: 650px){
     padding: 30px 10px;
@@ -185,6 +187,11 @@ export const SimpleBlueButton = styled.div`
       }
     }
   }
+`;
+
+export const SimpleBlueButtonSmall = styled(SimpleBlueButton)`
+  padding: 5px 15px;
+  font-size: 14px;
 `;
 
 export const EmptyWrap = styled.div`

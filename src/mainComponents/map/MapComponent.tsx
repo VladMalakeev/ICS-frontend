@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
-import {DrawerListItem, DrawerListWrap, MapWrap} from "./mapStyles";
+import React, {useEffect, useState} from 'react'
+import {DrawerListItem, DrawerListWrap, MapBlock, MapWrap} from "./mapStyles";
 import {Drawer} from "antd";
 import {MapTxt} from "../../texts/mapTxt";
 
 export const Map = () => {
     const [visible, setVisible] = useState(true);
 
+
     return (
-        <MapWrap id='map'>
+        <MapWrap>
+            <MapBlock id='map'></MapBlock>
             <Drawer
-                title="Basic Drawer"
                 placement="left"
                 closable={false}
                 onClose={() =>setVisible(false)}
@@ -100,7 +101,7 @@ export const Map = () => {
                     </DrawerListItem>
 
                     <DrawerListItem>
-                        <p className={'clin'}>{MapTxt.txt21}</p>
+                        <p className={'policlinica'}>{MapTxt.txt21}</p>
                     </DrawerListItem>
                 </DrawerListWrap>
             </Drawer>

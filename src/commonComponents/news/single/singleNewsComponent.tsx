@@ -30,7 +30,7 @@ export const SingleNewsComponent:React.FC<SingleNewsComponentType> = (props) => 
             {(props.isExist && !props.preloader) &&
                 <NewsBlock>
                     <NewsImageWrap>
-                        <NewsImage image={IMAGES+props.news.image}/>
+                        <NewsImage src={IMAGES+props.news.image}/>
                     </NewsImageWrap>
                     <NewsTitle>{props.news.title}</NewsTitle>
                     <DescriptionBlock dangerouslySetInnerHTML={{ __html: props.news.description }}/>

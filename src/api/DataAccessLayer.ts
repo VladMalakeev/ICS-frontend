@@ -2,6 +2,7 @@ import axios from 'axios'
 import {NewsEntityType} from "../redux/reducers/newsReducer";
 import {DepartmentsListType} from "../redux/reducers/departmentsReducer";
 import {DepartmentType} from "../redux/reducers/singleDepartmentsReducer";
+import {SemesterEntityType} from "../redux/reducers/semestersReducer";
 
 export const DOMAIN = process.env.REACT_APP_DOMAIN;
 export const IMAGES = DOMAIN+'api/Images/';
@@ -55,9 +56,21 @@ type DepartmentsApiType = {
 
 export const DepartmentsApi:DepartmentsApiType = {
     getDepartments(){
-        return instance.get<Array<DepartmentsListType>>('api/Departments').then(res => res.data)
+        return instance.get<Array<DepartmentsListType>>('api/Departaments').then(res => res.data)
     },
     getDepartmentsById(id){
-        return instance.get<DepartmentType>(`api/Departments/${id}`).then(res => res.data)
+        return instance.get<DepartmentType>(`api/Departaments/${id}`).then(res => res.data)
     },
+};
+
+type SemestersApiType = {
+    getSemesterData: () => any
+}
+
+export const SemestersApi:SemestersApiType = {
+    getSemesterData(){
+        return instance.get(
+            'api/Semesters/GetSemesterData'
+        ).then(res => res.data)
+    }
 };

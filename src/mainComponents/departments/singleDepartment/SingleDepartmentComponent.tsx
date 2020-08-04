@@ -27,11 +27,13 @@ export const SingleDepartmentComponent:React.FC<DepartmentPropsType> = (props) =
             {(props.isExist && !props.preloader) &&
                 <SinglePageBlock>
                     <SinglePostImageWrap>
-                        <SinglePostImage image={IMAGES+props.department.image}/>
+                        <SinglePostImage src={IMAGES+props.department.image}/>
                     </SinglePostImageWrap>
 
                     <SinglePostTitle>{props.department.specialty.name} ({props.department.specialty.specialtyCode})</SinglePostTitle>
                     <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: props.department.description }}/>
+                    <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: props.department.basicDiscipline }}/>
+                    <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: props.department.recommendedKnowledge }}/>
                     <SinglePostAuthorBlock>
                         <SinglePostInfoText>Заведующий кафедры: {props.department.headOfDepartment}</SinglePostInfoText>
                         <SinglePostInfoText>email: {props.department.email}</SinglePostInfoText>

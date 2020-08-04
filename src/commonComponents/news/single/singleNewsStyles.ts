@@ -25,31 +25,31 @@ export const NewsBlock = styled.div`
 
 export const NewsImageWrap = styled.div`
   width: 100%;
-  height: 600px;
+  height: auto;
   box-shadow: 3px 3px 11px 0px #0000003b;
   background: #F2F2F2;
   
   @media(max-width: 1500px){
-    height: 500px;
+    //height: 500px;
   }
   
    @media(max-width: 1000px){
-    height: 400px;
+    //height: 400px;
   }
   
   @media(max-width: 650px){
-    height: 250px;
+   // height: 250px;
   }
   
   @media(max-width: 400px){
-    height: 200px;
+    //height: 200px;
   }
 `;
 
-export const NewsImage = styled.div<any>`
+export const NewsImage = styled.img<any>`
   width: 100%;
-  height: 100%;
-  background: url(${props => props.image?props.image:emptyNews});
+  height: auto;
+  // background: url(${props => props.image?props.image:emptyNews});
   background-position: center;
   background-repeat: no-repeat;
   background-size: ${props => props.image?'cover':'contain'};

@@ -3,6 +3,34 @@ import emptyNews from '../../images/emptyNews.jpg';
 
 export const NewsBlockWrap = styled.div`
   min-height: 60vh;
+  width: 60vw;
+  
+  @media(max-width: 1330px){
+      width: 80vw;
+    }
+    
+    @media(max-width: 1000px){
+      width: 95vw;
+    }
+`;
+
+export const NewsDoubleBlockWrap = styled.div`
+  min-height: 60vh;
+  display: flex;
+  width: 70vw;
+  
+   @media(max-width: 1400px){
+      width: 85vw;
+    }
+    
+    @media(max-width: 1200px){
+      width: 95vw;
+    }
+    
+    @media(max-width: 1000px){
+      flex-direction: column-reverse; 
+    }
+    
 `;
 
 export const NewsListWrap = styled.div`
@@ -16,19 +44,11 @@ export const NewsListWrap = styled.div`
 export const SingleNewsWrap = styled.div`
     display: flex;
     padding: 20px;
-    width: 60vw;
+    width: 100%;
     height: 260px;
     background: white;
     box-shadow: 0px 2px 35px rgba(0, 0, 0, 0.05);
     margin: 15px;
-    
-    @media(max-width: 1330px){
-      width: 80vw;
-    }
-    
-    @media(max-width: 1000px){
-      width: 95vw;
-    }
     
     @media(max-width: 800px){
        height: 220px;
