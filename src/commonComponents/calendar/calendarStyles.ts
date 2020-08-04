@@ -73,11 +73,33 @@ export const LinksBlock = styled.div`
    }
 `;
 
-export const CalendarModuleSelection = styled.div<{today:boolean}>`
+export const CalendarFirstModuleSelection = styled.div<{today:boolean}>`
   width: 30px;
   height: 30px;
   box-shadow:${(props) => props.today ? '0 0 4px 0px #0013fbab': 'none'}; 
   background: #ffd991;
+  border-radius: 50%;
+  position: relative;
+  bottom: 28px;
+  z-index: -1;
+`;
+
+export const CalendarSecondModuleSelection = styled.div<{today:boolean}>`
+  width: 30px;
+  height: 30px;
+  box-shadow:${(props) => props.today ? '0 0 4px 0px #0013fbab' : 'none'}; 
+  background: #ffab919c;
+  border-radius: 50%;
+  position: relative;
+  bottom: 28px;
+  z-index: -1;
+`;
+
+export const CalendarSessionModuleSelection = styled.div<{today:boolean}>`
+  width: 30px;
+  height: 30px;
+  box-shadow:${(props) => props.today ? '0 0 4px 0px #0013fbab' : 'none'}; 
+  background: #c5aae07a;
   border-radius: 50%;
   position: relative;
   bottom: 28px;

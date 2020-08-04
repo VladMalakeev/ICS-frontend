@@ -2,9 +2,9 @@ import React, {useEffect, useState} from "react";
 import {
     ButtonsBlock,
     CalendarBigWhiteText,
-    CalendarBlock, CalendarContent,
-    CalendarModuleSelection,
-    CalendarSelected, CalendarSmallWhiteText, CalendarToday,
+    CalendarBlock, CalendarContent, CalendarFirstModuleSelection,
+    CalendarSecondModuleSelection,
+    CalendarSelected, CalendarSessionModuleSelection, CalendarSmallWhiteText, CalendarToday,
     CalendarWrap,
     DateBlock, DayBlock,
     LinksBlock, SelectionsBlock, SelectWrap, WeekBlock
@@ -32,11 +32,14 @@ type CalendarComponentType = {
 
 export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
     const [selectedDate, setSelectedDate] = useState(moment());
-    const [modules, setModules] = useState([]);
+    const [moduleFirst, setModuleFirst] = useState(data.firstModule);
+    const [moduleSecond, setModuleSecond] = useState(data.secondModule);
+    const [session, setSession] = useState(data.session);
 
     useEffect(() => {
-        console.log(selectedDate)
-      if(data.firstModule && modules.length === 0) setModules([data.firstModule, data.secondModule, data.session]);
+      if(data.firstModule) setModuleFirst(data.firstModule);
+      if(data.secondModule) setModuleSecond(data.secondModule);
+      if(data.session) setSession(data.session);
     })
 
     const isEqualsDate = (d1, d2) => {
@@ -46,24 +49,25 @@ export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
     const dateCellRender = (date) => {
         let result = null;
 
-        // modules.forEach(module => {
-        //     if(module){
-        //         if((date >= module.weekOfModuleStart && date <= module.weekOfModuleEnd) && !isEqualsDate(date,selectedDate)) {
-        //         result = <CalendarModuleSelection today={isEqualsDate(date, moment())}/>;
-        //         }
-        //     }else if(isEqualsDate(date,selectedDate)){
-        //         result = <CalendarSelected today={isEqualsDate(date,moment())}/>
-        //     }else if(isEqualsDate(date,moment())){
-        //         result = <CalendarToday/>
-        //     }
-        // })
-
-        if((date >= min && date <= max) && !isEqualsDate(date,selectedDate)) {
-            result = <CalendarModuleSelection today={isEqualsDate(date, moment())}/>;
+        if(moduleFirst){
+            if((date >= moment(moduleFirst.weekOfModuleStartDate) && date <= moment(moduleFirst.weekOfModuleEndDate)) && !isEqualsDate(date,selectedDate)) {
+                result = <CalendarFirstModuleSelection today={isEqualsDate(date, moment())}/>;
+            }
+        }
+        if(session){
+            if((date >= moment(session.weekOfModuleStartDate) && date <= moment(session.weekOfModuleEndDate)) && !isEqualsDate(date,selectedDate)) {
+                result = <CalendarSecondModuleSelection today={isEqualsDate(date, moment())}/>;
+            }
+        }
+        if(moduleSecond){
+            if((date >= moment(moduleSecond.weekOfModuleStartDate) && date <= moment(moduleSecond.weekOfModuleEndDate)) && !isEqualsDate(date,selectedDate)) {
+                result = <CalendarSessionModuleSelection today={isEqualsDate(date, moment())}/>;
+            }
         }
         if(isEqualsDate(date,selectedDate)){
             result = <CalendarSelected today={isEqualsDate(date,moment())}/>
-        }else if(isEqualsDate(date,moment())) {
+        }
+        else if(isEqualsDate(date,moment())) {
             result = <CalendarToday/>
         }
 
