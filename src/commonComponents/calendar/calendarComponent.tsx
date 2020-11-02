@@ -9,12 +9,12 @@ import {
     DateBlock, DayBlock,
     LinksBlock, SelectionsBlock, SelectWrap, WeekBlock
 } from './calendarStyles';
-import {Calendar} from "antd";
+import {Calendar, Select} from "antd";
+import {LoadingOutlined} from "@ant-design/icons"
 import locale from "antd/es/date-picker/locale/ru_RU";
 import moment from 'moment'
 import 'moment/locale/ru'
 import {SemesterEntityType} from "../../redux/reducers/semestersReducer";
-import { Select } from 'antd';
 import {SimpleBlueButton, SimpleBlueButtonSmall} from "../commomStyles";
 import {NavLink} from "react-router-dom";
 
@@ -50,17 +50,17 @@ export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
         let result = null;
 
         if(moduleFirst){
-            if((date >= moment(moduleFirst.weekOfModuleStartDate) && date <= moment(moduleFirst.weekOfModuleEndDate)) && !isEqualsDate(date,selectedDate)) {
+            if((date.isSameOrAfter(moment(moduleFirst.weekOfModuleStartDate)) && date.isSameOrBefore(moment(moduleFirst.weekOfModuleEndDate).add(1,'days'))) && !isEqualsDate(date,selectedDate)) {
                 result = <CalendarFirstModuleSelection today={isEqualsDate(date, moment())}/>;
             }
         }
         if(session){
-            if((date >= moment(session.weekOfModuleStartDate) && date <= moment(session.weekOfModuleEndDate)) && !isEqualsDate(date,selectedDate)) {
+            if((date.isSameOrAfter(moment(session.weekOfModuleStartDate)) && date.isSameOrBefore(moment(session.weekOfModuleEndDate).add(1,'days'))) && !isEqualsDate(date,selectedDate)) {
                 result = <CalendarSecondModuleSelection today={isEqualsDate(date, moment())}/>;
             }
         }
         if(moduleSecond){
-            if((date >= moment(moduleSecond.weekOfModuleStartDate) && date <= moment(moduleSecond.weekOfModuleEndDate)) && !isEqualsDate(date,selectedDate)) {
+            if((date.isSameOrAfter(moment(moduleSecond.weekOfModuleStartDate)) && date.isSameOrBefore(moment(moduleSecond.weekOfModuleEndDate).add(1,'days'))) && !isEqualsDate(date,selectedDate)) {
                 result = <CalendarSessionModuleSelection today={isEqualsDate(date, moment())}/>;
             }
         }
@@ -84,7 +84,10 @@ export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
                         <CalendarSmallWhiteText>{moment().format('MMMM')}</CalendarSmallWhiteText>
                     </DayBlock>
                     <WeekBlock>
-                        <CalendarBigWhiteText>1</CalendarBigWhiteText>
+                        <CalendarBigWhiteText>
+                           {data.thisWeek && <>{data.thisWeek}</>}
+                           {!data.thisWeek && <LoadingOutlined />}
+                        </CalendarBigWhiteText>
                         <CalendarSmallWhiteText>текущая неделя</CalendarSmallWhiteText>
                     </WeekBlock>
                 </DateBlock>
@@ -102,11 +105,11 @@ export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
                             <Select
                                 placeholder={'Курс'}
                             >
-                                <Option value={1}>1й</Option>
-                                <Option value={2}>2й</Option>
-                                <Option value={3}>3й</Option>
-                                <Option value={4}>4й</Option>
-                                <Option value={5}>5й</Option>
+                                <Option value={1}>1</Option>
+                                <Option value={2}>2</Option>
+                                <Option value={3}>3</Option>
+                                <Option value={4}>4</Option>
+                                <Option value={5}>5</Option>
                             </Select>
                         </SelectWrap>
 

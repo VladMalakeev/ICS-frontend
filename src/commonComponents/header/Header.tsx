@@ -60,6 +60,7 @@ export const Header = () => {
                 onClose={onClose}
                 visible={visible}
                 width={'100%'}
+                style={{ position: 'absolute',zIndex:1002}}
                 drawerStyle={{background:'linear-gradient(216.51deg, #08238C 26.5%, #1266BB 95.77%)'}}
             >
                 <DriverLinks>

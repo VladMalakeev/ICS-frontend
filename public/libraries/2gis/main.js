@@ -239,7 +239,7 @@ DG.then(function () {
         }
     });
 
-    $('.icsloc').click(function () {
+    $('.ics').click(function () {
         DG.popup()
             .setLatLng([46.459538242974446, 30.752054750919346])
             .setContent('ИКС' + '<br>' +
@@ -375,7 +375,7 @@ DG.then(function () {
             .openOn(map);
         map.setView([46.46127873381969, 30.752204954624176]);
     });
-    $('.alma').click(function () {
+    $('.lazani').click(function () {
         DG.popup()
             .setLatLng([46.460953550796944, 30.75122863054276])
             .setContent('Столовая' + '<br>' +

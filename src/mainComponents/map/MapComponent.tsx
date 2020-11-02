@@ -1,108 +1,109 @@
 import React, {useEffect, useState} from 'react'
-import {DrawerListItem, DrawerListWrap, MapBlock, MapWrap} from "./mapStyles";
-import {Drawer} from "antd";
-import {MapTxt} from "../../texts/mapTxt";
-
-export const Map = () => {
-    const [visible, setVisible] = useState(true);
+import {DrawerListItem, DrawerListWrap, MapBlock, MapWrap, DriverCloseButton} from "./mapStyles";
+import {Drawer,Tooltip } from "antd";
+import {RightCircleFilled, LeftCircleFilled} from "@ant-design/icons";
+import {MapList} from "../../mockData/map";
 
 
-    return (
-        <MapWrap>
-            <MapBlock id='map'></MapBlock>
+export const Map = (props:any) => {
+    const MobileMapSize = 900;
+    const [drawerIsOpen, changeDrawerState] = useState(window.innerWidth > MobileMapSize);
+
+    useEffect(() => {
+        window.addEventListener('resize', checkInnewWidth);
+        console.log('test')
+        return () => {
+            window.removeEventListener('resize', checkInnewWidth);
+        }
+    });
+    const checkInnewWidth = () => {
+        if(window.innerWidth > MobileMapSize && !drawerIsOpen){
+            changeDrawerState(true);
+        }else if(window.innerWidth < MobileMapSize && drawerIsOpen){
+            changeDrawerState(false);
+        }
+    };
+
+
+    return (                  
+            <MapWrap>   
+                <MapBlock id='map'></MapBlock>
+             
             <Drawer
+                width={290}
                 placement="left"
                 closable={false}
-                onClose={() =>setVisible(false)}
-                visible={visible}
+                onClose={() =>changeDrawerState(false)}
+                visible={drawerIsOpen}
                 getContainer={false}
+                bodyStyle={{padding:'0 10px 10px 10px'}}
                 style={{ position: 'absolute',zIndex:1001}}
                 mask={false}
+                closeIcon={null}
             >
-                <DrawerListWrap>
-                    <DrawerListItem>
-                        <p className={'icsloc'}>{MapTxt.txt1}</p>
-                    </DrawerListItem>
+                {window.innerWidth < MobileMapSize &&
+                    <DriverCloseButton isOpen={drawerIsOpen}>
+                            <LeftCircleFilled style={{fontSize:'25px'}} onClick={() =>changeDrawerState(!drawerIsOpen)} />
+                    </DriverCloseButton>
+                }
+                <DrawerListWrap  showClosedBtn={drawerIsOpen && window.innerWidth < MobileMapSize}>
+                    {MapList.map(item => {
+                        return (
+                            <DrawerListItem 
+                                onClick={() => window.innerWidth < MobileMapSize ? changeDrawerState(false): null}
+                                key={item.key} 
+                                to={`#${item.link}`} 
+                                className={`${item.link}`} 
+                                active={props.location.hash === `#${item.link}`}
+                                isOpen={drawerIsOpen}
+                                id={item.link}
+                                smooth={true}
+                            >
+                                {item.ico}
+                              <span>{item.name}</span>
+                            </DrawerListItem>
+                        )
+                    })}
 
-                    <DrawerListItem>
-                        <p className={'admin'}>{MapTxt.txt2}</p>
-                    </DrawerListItem>
+                </DrawerListWrap>
+            </Drawer>
+            <Drawer
+                width={50}
+                placement="left"
+                closable={false}
+                onClose={() => changeDrawerState(true)}
+                visible={!drawerIsOpen}
+                getContainer={false}
+                bodyStyle={{padding:'0 10px 10px 10px'}}
+                style={{ position: 'absolute',zIndex:1001}}
+                mask={false}
+                closeIcon={null}
+            >
+                {!drawerIsOpen &&
+                    <DriverCloseButton>
+                        <RightCircleFilled style={{fontSize:'25px'}} onClick={() =>changeDrawerState(!drawerIsOpen)} />
+                    </DriverCloseButton>
+                }
+                <DrawerListWrap showClosedBtn={!drawerIsOpen && window.innerWidth < MobileMapSize}>
+                
+                    {MapList.map(item => {
+                        return (
+                            <DrawerListItem 
+                                key={item.key} 
+                                to={`#${item.link}`} 
+                                className={`${item.link}`} 
+                                active={props.location.hash === `#${item.link}`}
+                                isOpen={drawerIsOpen}
+                                id={item.link}
+                                smooth={true}
+                            >
+                               <Tooltip title={item.name} color={'blue'} placement="left" arrowPointAtCenter={true}>
+                                   {item.ico}
+                                </Tooltip> 
+                            </DrawerListItem>
+                        )
+                    })}
 
-                    <DrawerListItem>
-                        <p className={'chem'}>{MapTxt.txt3}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'tcorp'}>{MapTxt.txt4}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'gym'}>{MapTxt.txt5}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'phys'}>{MapTxt.txt6}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'ttl'}>{MapTxt.txt7}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'gum'}>{MapTxt.txt8}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'bcorp'}>{MapTxt.txt9}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'hos4'}>{MapTxt.txt10}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'guk'}>{MapTxt.txt11}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'radio'}>{MapTxt.txt12}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'iee'}>{MapTxt.txt13}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'libr'}>{MapTxt.txt14}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'stadium'}>{MapTxt.txt15}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'dk'}>{MapTxt.txt16}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'met'}>{MapTxt.txt17}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'auto'}>{MapTxt.txt18}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'alma'}>{MapTxt.txt19}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'hos5'}>{MapTxt.txt20}</p>
-                    </DrawerListItem>
-
-                    <DrawerListItem>
-                        <p className={'policlinica'}>{MapTxt.txt21}</p>
-                    </DrawerListItem>
                 </DrawerListWrap>
             </Drawer>
         </MapWrap>

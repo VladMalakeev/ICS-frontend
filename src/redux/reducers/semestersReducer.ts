@@ -1,4 +1,5 @@
 import {SemestersActionType, SET_SEMESTER} from "../actions/semestersAction";
+import moment from "moment";
 
 export type ModuleEntityType = {
     id: number | null,
@@ -16,7 +17,8 @@ export type SemesterEntityType = {
     firstModule: ModuleEntityType | null,
     secondModule: ModuleEntityType | null,
     session: ModuleEntityType | null,
-    description: string | null
+    description: string | null,
+    thisWeek: number | null
 };
 
 let initialState: SemesterEntityType = {
@@ -27,7 +29,8 @@ let initialState: SemesterEntityType = {
     firstModule: null,
     secondModule: null,
     session: null,
-    description: null
+    description: null,
+    thisWeek:null
 }
 
 export const SemestersReducer = (state = initialState, action: SemestersActionType):SemesterEntityType => {
