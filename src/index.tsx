@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './mainComponents/App';
+import App from './modules/App';
 import * as serviceWorker from './serviceWorker';
-import {Provider} from "react-redux";
-import {store} from "./redux/store";
+import {ApolloProvider} from "@apollo/client";
+import { client } from "./graphql.settings";
 
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={store}>
+      <ApolloProvider client={client}>
           <App />
-      </Provider>
+      </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

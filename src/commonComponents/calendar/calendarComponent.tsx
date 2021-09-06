@@ -14,7 +14,6 @@ import {LoadingOutlined} from "@ant-design/icons"
 import locale from "antd/es/date-picker/locale/ru_RU";
 import moment from 'moment'
 import 'moment/locale/ru'
-import {SemesterEntityType} from "../../redux/reducers/semestersReducer";
 import {SimpleBlueButton, SimpleBlueButtonSmall} from "../commomStyles";
 import {NavLink} from "react-router-dom";
 
@@ -27,10 +26,10 @@ const min = moment().add(13,'days');
 const max = moment().add(25,'days');
 
 type CalendarComponentType = {
-    data:SemesterEntityType
+    
 }
 
-export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
+export const CalendarComponent = ({data}:any) => {
     const [selectedDate, setSelectedDate] = useState(moment());
     const [moduleFirst, setModuleFirst] = useState(data.firstModule);
     const [moduleSecond, setModuleSecond] = useState(data.secondModule);
@@ -42,11 +41,11 @@ export const CalendarComponent:React.FC<CalendarComponentType> = ({data}) => {
       if(data.session) setSession(data.session);
     })
 
-    const isEqualsDate = (d1, d2) => {
+    const isEqualsDate = (d1:any, d2:any) => {
        return  (d1.format('DD-MM-YYYY') === d2.format('DD-MM-YYYY'));
     }
 
-    const dateCellRender = (date) => {
+    const dateCellRender = (date:any) => {
         let result = null;
 
         if(moduleFirst){

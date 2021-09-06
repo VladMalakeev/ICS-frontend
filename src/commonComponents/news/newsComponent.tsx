@@ -1,5 +1,4 @@
 import React from "react";
-import {NewsEntityType} from "../../redux/reducers/newsReducer";
 import {
     NewsBlockWrap,
     NewsListWrap, SingleNewsButtons,
@@ -13,21 +12,22 @@ import moment from 'moment';
 import {Paragraph, SimpleBlueButton} from "../commomStyles";
 import {NewsTxt} from "../../texts/newsTxt";
 import {NavLink} from "react-router-dom";
-import {IMAGES} from "../../api/DataAccessLayer";
 import {Skeleton} from "antd";
 import {PaginatorComponent} from "../paginator/PaginatorComponent";
 import {EmptyComponent} from "../Empty";
 
+const IMAGES = process.env.REACT_APP_IMAGES;
 
-export const NewsComponent = (props) => {
+
+export const NewsComponent = (props:any) => {
     return (
         <NewsBlockWrap>
-            {(props.news.length > 0 || props.preloader) &&
+            {/* {(props.news.length > 0 || props.preloader) &&
             <>
                 <NewsListWrap>
                     {!props.preloader &&
                         <>
-                            {props.news.map(element => <SingleNews post={element} path={props.match.path}/>)}
+                            {props.news.map((element:any) => <SingleNews post={element} path={props.match.path}/>)}
                         </>
                     }
 
@@ -52,25 +52,25 @@ export const NewsComponent = (props) => {
             <>
                 <EmptyComponent/>
             </>
-            }
+            } */}
         </NewsBlockWrap>
     )
 };
 
 
-type SingleNewsProps = {
-    post:NewsEntityType,
-    path:string
-};
+// type SingleNewsProps = {
+//     post:NewsEntityType,
+//     path:string
+// };
 
 
-const SingleNews: React.FC<SingleNewsProps> = ({post, path}) => {
+const SingleNews = () => {
     return (
         <SingleNewsWrap>
-            <SingleNewsImageBackground>
-                <SingleNewsImageWrap image={IMAGES+post.image}>
+            {/* <SingleNewsImageBackground>
+                <SingleNewsImageWrap image={IMAGES+post.image}> */}
                 {/*<SingleNewsImageWrap image={post.image}>*/}
-                    <SingleNewsDate>{moment(post.dateOfPublication).format('DD.MM.YY')}</SingleNewsDate>
+                    {/* <SingleNewsDate>{moment(post.dateOfPublication).format('DD.MM.YY')}</SingleNewsDate>
                 </SingleNewsImageWrap>
             </SingleNewsImageBackground>
 
@@ -85,7 +85,7 @@ const SingleNews: React.FC<SingleNewsProps> = ({post, path}) => {
                         <SimpleBlueButton> <span>{NewsTxt.txt4}</span></SimpleBlueButton>
                     </NavLink>
                 </SingleNewsButtons>
-            </SingleNewsTextWrap>
+            </SingleNewsTextWrap> */}
         </SingleNewsWrap>
     )
 };

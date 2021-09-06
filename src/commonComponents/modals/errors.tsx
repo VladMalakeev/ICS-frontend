@@ -2,7 +2,7 @@ import React from "react";
 import {Modal} from "antd";
 import {Paragraph} from "../commomStyles";
 
-export const ServerError = (error) => {
+export const ServerError = (error:any) => {
     let code = null;
     if(error.response){
         code = error.response.status;

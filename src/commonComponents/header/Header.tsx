@@ -37,9 +37,9 @@ export const Header = () => {
         <>
             <HeaderWrap>
                 <HeaderLeftLinks>
-                    <HeaderLink><NavLink to={'/applicants/news'}>{HeaderTexts.txt1}</NavLink></HeaderLink>
-                    <HeaderLink><NavLink to={'/students/news'}>{HeaderTexts.txt2}</NavLink></HeaderLink>
-                    <HeaderLink><NavLink to={'/graduates/news'}>{HeaderTexts.txt3}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/news/'}>{HeaderTexts.txt1}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/departments/'}>{HeaderTexts.txt2}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/lecturers/'}>{HeaderTexts.txt3}</NavLink></HeaderLink>
                 </HeaderLeftLinks>
 
                 <LogoLink to={'/'}> <Logo src={logo}/></LogoLink>
@@ -48,7 +48,7 @@ export const Header = () => {
                 </HamburgerWrap>
 
                 <HeaderRightLinks>
-                    <HeaderLink><NavLink to={'/bulletin-board'}>{HeaderTexts.txt4}</NavLink></HeaderLink>
+                    <HeaderLink><NavLink to={'/schedule/'}>{HeaderTexts.txt4}</NavLink></HeaderLink>
                     <HeaderLink><a href={'tel:+380662542323'}>{HeaderTexts.txt5}</a></HeaderLink>
                 </HeaderRightLinks>
             </HeaderWrap>

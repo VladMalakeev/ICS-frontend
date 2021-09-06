@@ -72,7 +72,7 @@ export const ListElementTextWrap = styled.div`
 `;
 
 export const ListItemImageWrap = styled.div<{image:string | null}>`
-  background: url(${(props:any) => props.image?props.image:emptyNews});
+  background: url("${(props:any) => props.image?props.image:emptyNews}");
   background-size: ${(props:any) => props.image?'cover':'contain'};
   background-repeat: no-repeat;
   background-position: center;

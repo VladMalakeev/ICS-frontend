@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import seventhBackground from '../../images/mainSeventhBg.png'
 import {NavLink} from "react-router-dom";
-import {MainContentBlock} from "../../mainComponents/mainPage/MainPageStyles";
+import {MainContentBlock} from "../../modules/main_page/MainPageStyles";
 import {H2Black} from "../commomStyles";
 
 export const FooterMapWrap = styled.div`

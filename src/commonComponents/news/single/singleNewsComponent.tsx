@@ -9,25 +9,26 @@ import {
     NewsWrap
 } from "./singleNewsStyles";
 import moment from 'moment'
-import {NewsEntityType} from "../../../redux/reducers/newsReducer";
+
 import {EmptySinglePost} from "../../Empty";
 import {Skeleton} from "antd";
 import {SingleNewsTextWrap} from "../newsStyles";
-import {IMAGES} from "../../../api/DataAccessLayer";
 
-type SingleNewsComponentType = {
-    news:NewsEntityType,
-    preloader:boolean,
-    isExist:boolean
-}
+const IMAGES = process.env.REACT_APP_IMAGES;
 
-export const SingleNewsComponent:React.FC<SingleNewsComponentType> = (props) => {
+// type SingleNewsComponentType = {
+//     news:NewsEntityType,
+//     preloader:boolean,
+//     isExist:boolean
+// }
+
+export const SingleNewsComponent = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     },[]);
     return(
         <NewsWrap>
-            {(props.isExist && !props.preloader) &&
+            {/* {(props.isExist && !props.preloader) &&
                 <NewsBlock>
                     <NewsImageWrap>
                         <NewsImage src={IMAGES+props.news.image}/>
@@ -41,7 +42,7 @@ export const SingleNewsComponent:React.FC<SingleNewsComponentType> = (props) => 
                 </NewsBlock>
             }
             {(!props.isExist && props.preloader) && <EmptyNews/>}
-            {props.isExist === false && <EmptySinglePost/>}
+            {props.isExist === false && <EmptySinglePost/>} */}
         </NewsWrap>
     )
 };

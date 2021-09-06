@@ -1,0 +1,6 @@
+@import '~antd/dist/antd.css';
+
+.swiper-slide{
+    height: auto !important;
+    margin-top: 5px;
+}
