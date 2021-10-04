@@ -10,11 +10,23 @@ import {EmptySinglePost} from "../../../commonComponents/Empty";
 import {ListItemHeader} from "../../../commonComponents/listPage/listPageStyles";
 import {SimpleBody} from "../../../commonComponents/commomStyles";
 import {Footer} from "../../../commonComponents/footer/Footer";
+import {useQuery} from "@apollo/client";
+import {GET_DEPARTMENT} from "../department.gql";
+import {DepartmentType, SingleDepartmentComponentType} from "../department.types";
+import EmptyImage from "../../../images/image.png"
 
-const IMAGES = process.env.REACT_APP_IMAGES;
+//TODO:remove mock
+import departments from "../../../mockData/departmets";
+import {fullImagePath} from "../../../utils/functions";
 
 
-export const SingleDepartmentComponent = () => {
+export const SingleDepartmentComponent = ({match}:SingleDepartmentComponentType) => {
+    // const {data, loading, error} = useQuery<DepartmentType>(GET_DEPARTMENT, {variables:{id:id}});
+    //TODO:remove mock
+    const data: DepartmentType | undefined = departments.find(department => department.id === match.params.id);
+    const loading = false;
+    const error = false;
+
     useEffect(() => {
         window.scrollTo(0, 0);
     },[]);
@@ -22,26 +34,20 @@ export const SingleDepartmentComponent = () => {
     return (
         <>
         <SimpleBody>
-        <SinglePageWrap>
-            {/* {(props.isExist && !props.preloader) &&
-                <SinglePageBlock>
-                    <SinglePostImageWrap>
-                        <SinglePostImage src={IMAGES+props.department.image}/>
-                    </SinglePostImageWrap>
+            {!loading && data &&
+                <SinglePageWrap>
+                    <SinglePageBlock>
+                        <SinglePostImageWrap>
+                            <SinglePostImage src={data.image ? fullImagePath(data.image): EmptyImage}/>
+                        </SinglePostImageWrap>
 
-                    <SinglePostTitle>{props.department.specialty.name} ({props.department.specialty.specialtyCode})</SinglePostTitle>
-                    <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: props.department.description }}/>
-                    <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: props.department.basicDiscipline }}/>
-                    <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: props.department.recommendedKnowledge }}/>
-                    <SinglePostAuthorBlock>
-                        <SinglePostInfoText>Заведующий кафедры: {props.department.headOfDepartment}</SinglePostInfoText>
-                        <SinglePostInfoText>email: {props.department.email}</SinglePostInfoText>
-                    </SinglePostAuthorBlock>
-                </SinglePageBlock>
+                        <SinglePostTitle>{data.name}</SinglePostTitle>
+                        <SinglePostDescriptionBlock dangerouslySetInnerHTML={{ __html: data.description }}/>
+                    </SinglePageBlock>
+                </SinglePageWrap>
             }
-            {(!props.isExist && props.preloader) && <EmptyDepartment/>}
-            {props.isExist === false && <EmptySinglePost/>} */}
-        </SinglePageWrap>
+            {loading && <EmptyDepartment/>}
+            {!data && <EmptySinglePost/>}
         </SimpleBody>
             <Footer/>
         </>

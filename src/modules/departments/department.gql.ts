@@ -5,3 +5,9 @@ export const GET_DEPARTMENTS_LIST = gql`
       
     }
 `;
+
+export const GET_DEPARTMENT = gql`
+    query getDepartment{
+      
+    }
+`;

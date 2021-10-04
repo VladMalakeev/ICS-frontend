@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import emptyNews from "../../images/emptyNews.jpg";
+import {sizes} from "../../utils/sizes";
 
 export const SinglePageWrap = styled.div`
   width: 100%;
@@ -8,14 +9,10 @@ export const SinglePageWrap = styled.div`
 `;
 
 export const SinglePageBlock = styled.div`
-    width: 70%;
+    width: 90%;
     background: #ffffffad;
     padding: 25px;
     box-shadow: 0 0 5px #00000024;
-    
-    @media(max-width: 1200px){
-     width: 85%;
-    }
     
     @media(max-width: 650px){
       width: 95%;
@@ -46,13 +43,25 @@ export const SinglePostImageWrap = styled.div`
   }
 `;
 
-export const SinglePostImage = styled.img<any>`
+export const SinglePostImage = styled.div<{src:string}>`
   width: 100%;
-  height: auto;
-  // background: url(${props => props.image?props.image:emptyNews});
+  height: 400px;
+  background: url(${props => props.src ?? emptyNews});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: ${props => props.image?'cover':'contain'};
+  background-size: ${props => props.src ? 'cover' : 'contain'};
+  
+  @media(${sizes[768]}){
+    height: 300px;
+  }
+  
+  @media(${sizes[650]}){
+    height: 250px;
+  }
+  
+  @media(${sizes[480]}){
+    height: 200px;
+  }
 `;
 
 export const SinglePostTitle = styled.p`

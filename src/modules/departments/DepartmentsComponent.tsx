@@ -11,8 +11,6 @@ import {Paragraph, SimpleBlueButton, SimpleBody} from "../../commonComponents/co
 import {NavLink} from "react-router-dom";
 import {NewsTxt} from "../../texts/newsTxt";
 import {Footer} from "../../commonComponents/footer/Footer";
-import {DepartmentsListElementWrap} from "./DetartmentsStyles";
-
 import departments from "../../mockData/departmets"
 import {DepartmentType} from "./department.types";
 
@@ -41,7 +39,7 @@ const data:Array<DepartmentType> = departments
                         <ListWrap>
                             {!loading &&
                             <>
-                                {data.map((element:DepartmentType) => <SingleDepartment department={element}/>)}
+                                {/*{data.map((element:DepartmentType) => <SingleDepartment department={element}/>)}*/}
                             </>
                             }
 
@@ -69,26 +67,26 @@ const data:Array<DepartmentType> = departments
     );
 };
 
-
-const SingleDepartment = ({department}:{department:DepartmentType}) => {
-    return (
-        <DepartmentsListElementWrap>
-            <ListElementImageBackground>
-                <ListItemImageWrap image={IMAGES + department.image}/>
-            </ListElementImageBackground>
-            <ListElementTextWrap>
-                <div>
-                    <ListItemHeader>{department.name}</ListItemHeader>
-                    {/*<Paragraph style={{fontWeight:'bold'}}>Номер специальности: {department.specialty.specialtyNumberCode}</Paragraph>*/}
-                    <ListItemDescription dangerouslySetInnerHTML={{__html: department.description}}/>
-                </div>
-                <ListItemButtons>
-                    <Paragraph style={{fontWeight: 'bold'}}></Paragraph>
-                    <NavLink to={department.id}>
-                        <SimpleBlueButton> <span>{NewsTxt.txt4}</span></SimpleBlueButton>
-                    </NavLink>
-                </ListItemButtons>
-            </ListElementTextWrap>
-        </DepartmentsListElementWrap>
-    )
-};
+//
+// const SingleDepartment = ({department}:{department:DepartmentType}) => {
+//     return (
+//         <DepartmentsListElementWrap>
+//             <ListElementImageBackground>
+//                 <ListItemImageWrap image={IMAGES + department.image}/>
+//             </ListElementImageBackground>
+//             <ListElementTextWrap>
+//                 <div>
+//                     <ListItemHeader>{department.name}</ListItemHeader>
+//                     {/*<Paragraph style={{fontWeight:'bold'}}>Номер специальности: {department.specialty.specialtyNumberCode}</Paragraph>*/}
+//                     <ListItemDescription dangerouslySetInnerHTML={{__html: department.description}}/>
+//                 </div>
+//                 <ListItemButtons>
+//                     <Paragraph style={{fontWeight: 'bold'}}></Paragraph>
+//                     <NavLink to={department.id}>
+//                         <SimpleBlueButton> <span>{NewsTxt.txt4}</span></SimpleBlueButton>
+//                     </NavLink>
+//                 </ListItemButtons>
+//             </ListElementTextWrap>
+//         </DepartmentsListElementWrap>
+//     )
+// };

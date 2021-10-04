@@ -7,3 +7,13 @@ export type DepartmentType = {
     description: string,
    // headOfDepartment:LecturerType
 }
+
+//Component Types
+
+export type SingleDepartmentComponentType = {
+    match:{
+        params:{
+            id:string
+        }
+    }
+}

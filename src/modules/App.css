@@ -4,3 +4,8 @@
     height: auto !important;
     margin-top: 5px;
 }
+
+@font-face {
+    font-family: 'Scada';
+    src:  url('/fonts/Scada-Regular.ttf') format('ttf'),
+}

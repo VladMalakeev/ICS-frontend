@@ -7,5 +7,13 @@ export type LecturerType = {
     description: string,
     image: string,
     email: string,
-    phoneNumber: string
+    phoneNumber: string,
+    position:{
+        id:string,
+        name:string
+    },
+    department:{
+        id:string,
+        name:string
+    }
 }

@@ -9,9 +9,10 @@ import './App.css'
 import {Body} from '../commonComponents/commomStyles';
 import {MainPageComponent} from "./main_page/MainPageComponent";
 import {SingleStudentsNews} from "./news/singleNews/SingleStudentsNews";
-import {DepartmentsComponent} from "./departments/DepartmentsComponent";
+import {DepartmentsListComponent} from "./departments/DepartmentsListComponent";
 import {SingleDepartmentComponent} from "./departments/singleDepartment/SingleDepartmentComponent";
 import {hot} from "react-hot-loader/root";
+import SingleLecturerComponent from "./lecturers/singleLecturer/SingleLecturerComponent";
 
 function App() {
   return (
@@ -20,14 +21,10 @@ function App() {
           <Body>
             <Switch>
                 <Route exact path='/' component={MainPageComponent}/>
-                {/*<Route exact path='/students/news' component={StudentsNewsContainer}/>*/}
                 {/*<Route path='/students/news/:id' component={SingleStudentsNewsContainer}/>*/}
-                {/*<Route exact path='/graduates/news' component={GraduatesNewsContainer}/>*/}
-                {/*<Route path='/graduates/news/:id' component={SingleGraduatesNewsContainer}/>*/}
-                {/*<Route exact path='/applicants/news' component={ApplicantsNewsContainer}/>*/}
-                {/*<Route path='/applicants/news/:id' component={SingleApplicantsNewsContainer}/>*/}
-                {/*<Route exact path='/lecturers' component={Lecturers}/>*/}
-                <Route exact path='/departments' component={DepartmentsComponent}/>
+                <Route exact path='/lecturers' component={Lecturers}/>
+                <Route exact path='/lecturer/:id' component={SingleLecturerComponent}/>
+                <Route exact path='/departments' component={DepartmentsListComponent}/>
                 <Route exact path='/departments/:id' component={SingleDepartmentComponent}/>
                 {/*<Route exact path='/bulletin-board' component={BulletinBoard}/>*/}
                 {/*<Route exact path='/students/management' component={StudentManagement}/>*/}
